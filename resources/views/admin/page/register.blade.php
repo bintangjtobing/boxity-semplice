@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- endinject -->
 
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('semplice_assets/icon_2.png') }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
@@ -50,11 +50,9 @@
                             <div class="signUP-admin-left__content">
                                 <div
                                     class="text-capitalize mb-md-30 mb-15 d-flex align-items-center justify-content-md-start justify-content-center">
-                                    <a class="wh-36 bg-primary text-white radius-md mr-10 content-center"
-                                        href="index.html">S</a>
-                                    <span class="text-dark">Semplice</span>
+                                    <span class="text-dark"><img class="img-fluid" src="{!! asset('semplice_assets/semplice.png') !!}"
+                                            alt=""></span>
                                 </div>
-                                <h1>Semplice Web Application</h1>
                             </div>
                             <div class="signUP-admin-left__img">
                                 <img class="img-fluid svg" src="{{ asset('img/svg/signupIllustration.svg') }}"

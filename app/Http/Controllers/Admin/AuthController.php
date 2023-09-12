@@ -19,22 +19,30 @@ class AuthController extends Controller
         $this->repo = new AuthRepository;
     }
 
+    function viewBusinessLanding() {
+
+    }
+
     function viewLogin() {
-        return view('admin.page.login');
+        if (auth()->guard('admin')->check()) {
+            return redirect('dashboard');
+        } else {
+            return view('admin.page.login');
+        }
     }
 
     function processLogin(Request $request) {
-        $email = request('email');
+        $email = request('username_or_email');
         $password = request('password');
         $timezone = 'Asia/Jakarta';
         $now = \Carbon\Carbon::now($timezone);
         $admin = Admin::whereHas('Role', function($query) {
             $query->where('type', 2);
         });
-        if (str_contains($request->email_or_username, '@')) {
-            $admin = $admin->where('email', $request->email_or_username)->first();
+        if (str_contains($request->username_or_email, '@')) {
+            $admin = $admin->where('email', $request->username_or_email)->first();
         } else {
-            $admin = $admin->where('username', $request->email_or_username)->first();
+            $admin = $admin->where('username', $request->username_or_email)->first();
         }
 
         if ($admin) {

@@ -4,7 +4,7 @@ use App\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AdminsSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.

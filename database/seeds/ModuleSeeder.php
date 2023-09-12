@@ -4,7 +4,7 @@ use App\Module;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ModulesSeeder extends Seeder
+class ModuleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -36,33 +36,33 @@ class ModulesSeeder extends Seeder
                 'type' => 2,
                 'is_shown' => 1
             ],
-            [
-                'module_group_id' => 2,
-                'name' => 'Role',
-                'order' => null,
-                'icon' => null,
-                'route' => 'role',
-                'type' => 2,
-                'is_shown' => 1
-            ],
-            [
-                'module_group_id' => 2,
-                'name' => 'Admin',
-                'order' => null,
-                'icon' => null,
-                'route' => 'admin',
-                'type' => 2,
-                'is_shown' => 1
-            ],
-            [
-                'module_group_id' => 2,
-                'name' => 'Authorization',
-                'order' => null,
-                'icon' => null,
-                'route' => 'authorization',
-                'type' => 2,
-                'is_shown' => 1
-            ],
+            // [
+            //     'module_group_id' => 2,
+            //     'name' => 'Role',
+            //     'order' => null,
+            //     'icon' => null,
+            //     'route' => 'role',
+            //     'type' => 2,
+            //     'is_shown' => 1
+            // ],
+            // [
+            //     'module_group_id' => 2,
+            //     'name' => 'Admin',
+            //     'order' => null,
+            //     'icon' => null,
+            //     'route' => 'admin',
+            //     'type' => 2,
+            //     'is_shown' => 1
+            // ],
+            // [
+            //     'module_group_id' => 2,
+            //     'name' => 'Authorization',
+            //     'order' => null,
+            //     'icon' => null,
+            //     'route' => 'authorization',
+            //     'type' => 2,
+            //     'is_shown' => 1
+            // ],
         ]);
     }
 }

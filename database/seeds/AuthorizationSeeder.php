@@ -6,7 +6,7 @@ use App\AuthorizationType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AuthorizationsSeeder extends Seeder
+class AuthorizationSeeder extends Seeder
 {
     /**
      * Run the database seeds.

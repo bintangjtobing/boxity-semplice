@@ -4,7 +4,7 @@ use App\ModuleGroup;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ModuleGroupsSeeder extends Seeder
+class ModuleGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,13 +23,13 @@ class ModuleGroupsSeeder extends Seeder
                 'icon' => 'settings',
                 'type' => 1,
             ],
-            //admin module group
-            [
-                'name' => 'User & Authorization',
-                'order' => 1,
-                'icon' => 'settings',
-                'type' => 2,
-            ],
+            // //admin module group
+            // [
+            //     'name' => 'User & Authorization',
+            //     'order' => 1,
+            //     'icon' => 'settings',
+            //     'type' => 2,
+            // ],
         ]);
     }
 }
