@@ -19,10 +19,7 @@
                         </ul>
                         <div class="container my-3">
                             <div class="row" id="steps-12">
-                                <div class="col-md">
-                                    <label for="url">URL Business</label>
-                                    <input type="text" class="form-control" id="url">
-                                </div>
+                                @include('admin.modal.step3.data.12')
                             </div>
                         </div>
                     </div>

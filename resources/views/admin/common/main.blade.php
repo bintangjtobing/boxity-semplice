@@ -20,9 +20,9 @@
                 {!! $content !!}
                 <!-- ends: .row -->
             </div>
-            @include('admin.modal.step1')
-            @include('admin.modal.step2')
-            @include('admin.modal.step3')
+            @include('admin.modal.step1.step1')
+            @include('admin.modal.step2.step2')
+            @include('admin.modal.step3.step3')
         </div>
         @include('admin.common.footer')
     </main>

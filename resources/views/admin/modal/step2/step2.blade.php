@@ -47,28 +47,19 @@
                         </ul>
                         <div class="container my-3">
                             <div class="row" id="steps-7">
-                                <div class="col-md">
-                                    <label for="url">URL Business</label>
-                                    <input type="text" class="form-control" id="url">
-                                </div>
+                                @include('admin.modal.step2.data.7')
                             </div>
                             <div class="row" id="steps-8">
-                                <div class="col-md">
-                                    <label for="url">URL 2</label>
-                                    <input type="text" class="form-control" id="url">
-                                </div>
+                                @include('admin.modal.step2.data.8')
                             </div>
                             <div class="row" id="steps-9">
-                                <div class="col-md">
-                                    <label for="url">URL 3</label>
-                                    <input type="text" class="form-control" id="url">
-                                </div>
+                                @include('admin.modal.step2.data.9')
                             </div>
                             <div class="row" id="steps-10">
-                                <div class="col-md">
-                                    <label for="url">URL Business</label>
-                                    <input type="text" class="form-control" id="url">
-                                </div>
+                                @include('admin.modal.step2.data.10')
+                            </div>
+                            <div class="row" id="steps-11">
+                                @include('admin.modal.step2.data.11')
                             </div>
                         </div>
                     </div>
