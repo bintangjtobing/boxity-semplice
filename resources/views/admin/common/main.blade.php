@@ -23,9 +23,7 @@
             <form id="formData">
                 @csrf
                 @include('admin.modal.urlSemplice')
-                @include('admin.modal.step1.step1')
-                @include('admin.modal.step2.step2')
-                @include('admin.modal.step3.step3')
+                @include('admin.modal.steps.main')
             </form>
         </div>
         @include('admin.common.footer')
@@ -55,113 +53,78 @@
             }
         })
 
+
         $(document).ready(function() {
+            var currentStep = 1;
+            var totalSteps = 9;
+
             $('#urlSempliceModal').modal('show');
+            $("#btnBack").hide();
 
-            $(document).ready(function() {
-                var currentStep = 1;
-                var totalSteps = 12;
+            // Event handler untuk tombol "Next"
+            $("#btnNext").click(function() {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
 
-                // Sembunyikan tombol "Back" saat di langkah pertama
-                $("#btnBack").hide();
+            // Event handler untuk tombol "Back"
+            $("#btnBack").click(function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
 
-                // Event handler untuk tombol "Next"
-                $("#btnNext").click(function() {
-                    if (currentStep < totalSteps) {
-                        currentStep++;
-                        showStep(currentStep);
-                    }
-                });
+            var arrayData = [
+                'Profil Singkat - Owner',
+                'Tentang Bisnis',
+                'Lokasi Bisnis',
+                'Testimoni Bisnis',
+                'Produk Bisnis',
+                'Kontak Bisnis',
+                'Situs Web dan Media Bisnis',
+                'Marketplace Bisnis',
+                'Promo / Event Bisnis',
+            ];
 
-                // Event handler untuk tombol "Back"
-                $("#btnBack").click(function() {
-                    if (currentStep > 1) {
-                        currentStep--;
-                        showStep(currentStep);
-                    }
-                });
-
-                // Event handler untuk tombol "Next"
-                $("#btnNext2").click(function() {
-                    if (currentStep < totalSteps) {
-                        currentStep++;
-                        showStep(currentStep);
-                    }
-                });
-
-                // Event handler untuk tombol "Back"
-                $("#btnBack2").click(function() {
-                    if (currentStep > 1) {
-                        currentStep--;
-                        showStep(currentStep);
-                    }
-                });
-
-                $("#btnNext3").click(function() {
-                    if (currentStep < totalSteps) {
-                        currentStep++;
-                        showStep(currentStep);
-                    }
-                });
-
-                $("#btnBack3").click(function() {
-                    if (currentStep > 1) {
-                        currentStep--;
-                        showStep(currentStep);
-                    }
-                });
-
-                function showStep(step) {
-                    if (step > 1) {
-                        $("#btnBack").show();
-                    } else {
-                        $("#btnBack").hide();
-                    }
-
-                    if (step === totalSteps) {
-                        $("#btnNext").hide();
-                        $("#btnSave").show();
-                    } else {
-                        $("#btnNext").show();
-                    }
-                    if (step === 12) {
-                        $('#step1Modal').modal('hide');
-                        $('#step2Modal').modal('hide');
-                        $('#step3Modal').modal('show');
-                    }
-                    if (step === 7 || step === 11) {
-                        $('#step1Modal').modal('hide');
-                        $('#step2Modal').modal('show');
-                        $('#step3Modal').modal('hide');
-                    }
-                    if (step === 6) {
-                        $('#step1Modal').modal('show');
-                        $('#step2Modal').modal('hide');
-                        $('#step3Modal').modal('hide');
-                    }
-
-                    for (var i = 1; i <= totalSteps; i++) {
-                        if (i == step) {
-                            $("#steps-" + i).show();
-                            $(".atbd-steps__item").eq(i - 1).addClass("active");
-                        } else {
-                            $("#steps-" + i).hide();
-                            $(".atbd-steps__item").eq(i - 1).removeClass("active");
-                        }
-                    }
+            function showStep(step) {
+                if (step > 1) {
+                    $("#btnBack").show();
+                } else {
+                    $("#btnBack").hide();
                 }
 
-                showStep(currentStep);
-            });
+                if (step === totalSteps) {
+                    $("#btnNext").hide();
+                    $("#btnSave").show();
+                } else {
+                    $("#btnNext").show();
+                }
+                $('#titleModal').html(arrayData[step - 1]);
+                for (var i = 1; i <= totalSteps; i++) {
+                    if (i == step) {
+                        $("#steps-" + i).show();
+                        $("#titlePage").html(i);
+                    } else {
+                        $("#steps-" + i).hide();
+                        $(".atbd-steps__item").eq(i - 1).removeClass("active");
+                    }
+                }
+            }
+
+            showStep(currentStep);
         });
 
         $('#btnOpenSteps1').on('click', function() {
             var urlSemplice = $('#url_semplice').val();
-
+            clearSingleError('url_semplice');
             if (urlSemplice == '') {
-                // $('#url_semplice')
+                showSingleError('url_semplice', 'Url Semplice tidak boleh kosong')
                 return false;
             }
+            $('#urlSempliceModal').modal('hide');
             $('#step1Modal').modal('show');
         })
 

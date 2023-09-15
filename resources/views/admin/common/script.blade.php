@@ -45,4 +45,24 @@
 <script src="{{ asset('assets/theme_assets/js/jvectormap-init.js') }}"></script>
 <script src="{{ asset('assets/theme_assets/js/leaflet-init.js') }}"></script>
 <script src="{{ asset('assets/theme_assets/js/main.js') }}"></script>
+<script>
+    function showError(data) {
+        $('.invalid-feedback').remove();
+        $.each(data, function(idx, item) {
+            $('#' + idx).addClass('is-invalid');
+            $('#' + idx).parent().append('<div class="invalid-feedback">' + item + '</div>')
+        })
+    }
+
+    function showSingleError(id, message) {
+        $('.invalid-feedback').remove();
+        $('#' + id).addClass('is-invalid');
+        $('#' + id).parent().append('<div class="invalid-feedback">' + message + '</div>')
+    }
+
+    function clearSingleError(id) {
+        $('.invalid-feedback').remove();
+        $('#' + id).removeClass('is-invalid');
+    }
+</script>
 <!-- endinject-->
