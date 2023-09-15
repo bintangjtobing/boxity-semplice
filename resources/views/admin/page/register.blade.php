@@ -75,9 +75,16 @@
                                 <div class="col-xl-7 col-lg-10 col-md-12 ">
                                     <div class="edit-profile mt-md-25 mt-0">
                                         <div class="card border-0">
-                                            <div class="card-header border-0  pb-md-15 pb-10 pt-md-20 pt-10 ">
+                                            <div class="card-header border-0 pt-md-20 pt-10 ">
                                                 <div class="edit-profile__title">
-                                                    <h6>Sign up to <span class="color-primary">Admin</span></h6>
+                                                    <p class="h1">Daftar menjadi member
+                                                        <br>di <span>Semplice</span>
+                                                    </p>
+                                                    <p class="mt-2">
+                                                        Jangkau lebih banyak pelanggan dengan mini
+                                                        <br>
+                                                        landingpage super simple dari Semplice by Boxity.
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="card-body">

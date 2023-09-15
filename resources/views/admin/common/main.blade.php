@@ -22,6 +22,7 @@
             </div>
             <form id="formData">
                 @csrf
+                @include('admin.modal.urlSemplice')
                 @include('admin.modal.step1.step1')
                 @include('admin.modal.step2.step2')
                 @include('admin.modal.step3.step3')
@@ -42,10 +43,20 @@
     <div class="overlay-dark-sidebar"></div>
     @include('admin.common.script')
     <script type="text/javascript">
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
         $(document).ready(function() {
-            $('#step1Modal').modal('show');
-            $('#step2Modal').modal('hide');
-            $('#step3Modal').modal('hide');
+            $('#urlSempliceModal').modal('show');
 
             $(document).ready(function() {
                 var currentStep = 1;
@@ -143,6 +154,16 @@
                 showStep(currentStep);
             });
         });
+
+        $('#btnOpenSteps1').on('click', function() {
+            var urlSemplice = $('#url_semplice').val();
+
+            if (urlSemplice == '') {
+                // $('#url_semplice')
+                return false;
+            }
+            $('#step1Modal').modal('show');
+        })
 
         $('#formData').submit(function(e) {
             $(".submit").prop('disabled', true);
