@@ -9,5 +9,7 @@ use Carbon\Carbon;
 
 class DashboardRepository
 {
-
+    function create($request) {
+        dd($request);
+    }
 }

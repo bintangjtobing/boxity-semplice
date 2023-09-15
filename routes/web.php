@@ -30,6 +30,7 @@ Route::prefix('/')->group(function () {
     Route::namespace('Admin')->middleware(['admin'])->group(function () {
         Route::prefix('/dashboard')->group(function() {
             Route::get('/', [AdminDashboardController::class, 'view'])->name('dashboard_view_index');
+            Route::post('/', [AdminDashboardController::class, 'create'])->name('dashboard_add_data');
         });
     });
 });

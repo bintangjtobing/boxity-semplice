@@ -27,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="btnBack3">Back</button>
-                <button type="button" class="btn btn-primary" id="btnSave3">Save</button>
+                <button type="submit" class="btn btn-primary" id="btnSave3">Save</button>
             </div>
         </div>
     </div>

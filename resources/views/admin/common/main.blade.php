@@ -20,9 +20,12 @@
                 {!! $content !!}
                 <!-- ends: .row -->
             </div>
-            @include('admin.modal.step1.step1')
-            @include('admin.modal.step2.step2')
-            @include('admin.modal.step3.step3')
+            <form id="formData">
+                @csrf
+                @include('admin.modal.step1.step1')
+                @include('admin.modal.step2.step2')
+                @include('admin.modal.step3.step3')
+            </form>
         </div>
         @include('admin.common.footer')
     </main>
@@ -140,6 +143,33 @@
                 showStep(currentStep);
             });
         });
+
+        $('#formData').submit(function(e) {
+            $(".submit").prop('disabled', true);
+            e.preventDefault();
+            $('.is-invalid').each(function() {
+                $('.is-invalid').removeClass('is-invalid');
+            });
+            $.ajax({
+                url: "{{ route('dashboard_add_data') }}",
+                type: "POST",
+                data: $('#formData').serialize(),
+                success: function(res) {
+                    toastr['success']("Data Berhasil di Tambahkan");
+                    window.location.reload();
+                },
+                error: function(res) {
+                    $(".submit").prop('disabled', false);
+                    if (res.status != 422)
+                        toastr['error']("Something went wrong");
+                    showError(res.responseJSON.errors, "#formData");
+                    $.each(res.responseJSON.errors, function(idx, item) {
+                        toastr['error'](idx = item);
+                    });
+                }
+            });
+            return false;
+        })
     </script>
 </body>
 

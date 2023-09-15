@@ -20,4 +20,16 @@ class DashboardController extends Controller
         $content = view('admin.dashboard.view');
         return view('admin.common.main', compact('content'));
     }
+
+    function create(Request $request)
+    {
+        $banner = $this->repo->create($request);
+        $data = [
+            'status' => true,
+            'message' => 'Success create data',
+            'data' => $banner
+        ];
+
+        return response()->json($data, 200);
+    }
 }
