@@ -1,7 +1,7 @@
 <div class="col-md">
     <div class="row mb-3">
         <div class="col-md">
-            <label for="product_title">Judul Produk</label>
+            <label for="product_title">Nama pengguna</label>
             <input type="text" class="form-control" id="product_title" name="product_title">
         </div>
     </div>

@@ -56,9 +56,9 @@
 
         $(document).ready(function() {
             var currentStep = 1;
-            var totalSteps = 9;
+            var totalSteps = 10;
 
-            $('#urlSempliceModal').modal('show');
+            // $('#urlSempliceModal').modal('show');
             $("#btnBack").hide();
 
             // Event handler untuk tombol "Next"
@@ -98,7 +98,6 @@
 
                 if (step === totalSteps) {
                     $("#btnNext").hide();
-                    $("#btnSave").show();
                 } else {
                     $("#btnNext").show();
                 }

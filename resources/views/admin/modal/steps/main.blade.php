@@ -7,7 +7,7 @@
                     <div class="atbd-steps">
                         <div class="container d-flex justify-content-between">
                             <div>
-                                <h5 class="modal-title" id="step1ModalLabel">Informasi Bisni</h5>
+                                <h5 class="modal-title" id="step1ModalLabel">Informasi Bisnis</h5>
                             </div>
                             <div class="d-flex flex-column">
                                 <div id="titleModal">
@@ -45,6 +45,9 @@
                             </div>
                             <div class="row" id="steps-9">
                                 @include('admin.modal.steps.data.9')
+                            </div>
+                            <div class="row" id="steps-10">
+                                @include('admin.modal.steps.data.10')
                             </div>
                         </div>
                     </div>
