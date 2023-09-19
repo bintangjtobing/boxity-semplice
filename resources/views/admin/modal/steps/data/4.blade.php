@@ -1,10 +1,10 @@
 <div class="col-md">
     <div class="row mb-3">
         <div class="col-md">
-            <label for="show_on_theme">Tampilkan pada tema?</label>
+            <label for="show_on_theme_client">Tampilkan pada tema?</label>
             <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="show_on_theme">
-                <label class="custom-control-label" for="show_on_theme">On</label>
+                <input type="checkbox" class="custom-control-input" id="show_on_theme_client">
+                <label class="custom-control-label" for="show_on_theme_client">On</label>
             </div>
         </div>
     </div>

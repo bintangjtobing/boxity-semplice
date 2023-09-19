@@ -8,6 +8,6 @@
             </h5>
         </div>
     </div>
-    <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%">Lanjutkan</a>
+    {{-- <button type="submit" class="btn btn-primary" style="width: 100%" id="btnSave">Save</button> --}}
     <a href="javascript:void(0)" class="btn btn-success" style="width: 100%">Preview my Semplice!</a>
 </div>

@@ -13,11 +13,11 @@
                 placeholder="Ceritakan tentang produk"></textarea>
         </div>
         <div class="col-md">
-            <input type="file" id="file_product" name="file_product" class="form-control">
+            <div id="myDropzone" class="dropzone"></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row mb-3">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md">
                     <a href="javascript:void(0)" class="btn btn-outline-secondary" style="width: 100%">Produk
@@ -34,4 +34,24 @@
         </div>
     </div>
     <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%">Simpan & Tambah Produk</a>
+    <button type="submit" class="btn btn-primary" style="width: 100%" id="btnSave">Save</button>
 </div>
+<script type="text/javascript">
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#myDropzone", {
+        url: "/upload",
+        maxFiles: 4,
+        acceptedFiles: 'image/*',
+        autoProcessQueue: false,
+        autoQueue: false,
+        addRemoveLinks: true,
+    });
+    myDropzone.on("maxfilesreached", function(file) {
+        alert("Anda telah mencapai batas maksimum file yang diizinkan.");
+
+        var excessFiles = myDropzone.files.slice(3);
+        excessFiles.forEach(function(fileToRemove) {
+            myDropzone.removeFile(fileToRemove);
+        });
+    });
+</script>

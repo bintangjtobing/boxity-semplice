@@ -20,7 +20,7 @@
                 {!! $content !!}
                 <!-- ends: .row -->
             </div>
-            <form id="formData">
+            <form id="formData" enctype="multipart/form-data">
                 @csrf
                 @include('admin.modal.urlSemplice')
                 @include('admin.modal.steps.main')
@@ -55,10 +55,10 @@
 
 
         $(document).ready(function() {
-            var currentStep = 1;
+            var currentStep = 5;
             var totalSteps = 10;
 
-            // $('#urlSempliceModal').modal('show');
+            $('#urlSempliceModal').modal('show');
             $("#btnBack").hide();
 
             // Event handler untuk tombol "Next"
@@ -133,10 +133,21 @@
             $('.is-invalid').each(function() {
                 $('.is-invalid').removeClass('is-invalid');
             });
+
+            // Membuat objek FormData
+            var formData = new FormData(this);
+
+            // Mengambil file dari Dropzone dan menambahkannya ke objek FormData
+            myDropzone.files.forEach(function(file) {
+                formData.append('file[]', file); // Ganti 'file[]' sesuai dengan nama input file Anda
+            });
+
             $.ajax({
                 url: "{{ route('dashboard_add_data') }}",
                 type: "POST",
-                data: $('#formData').serialize(),
+                data: formData,
+                processData: false,
+                contentType: false,
                 success: function(res) {
                     toastr['success']("Data Berhasil di Tambahkan");
                     window.location.reload();
@@ -152,7 +163,7 @@
                 }
             });
             return false;
-        })
+        });
     </script>
 </body>
 
