@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%">Simpan & Tambah Produk</a>
+    {{-- <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%">Simpan & Tambah Produk</a> --}}
     <button type="submit" class="btn btn-primary" style="width: 100%" id="btnSave">Save</button>
 </div>
 <script type="text/javascript">

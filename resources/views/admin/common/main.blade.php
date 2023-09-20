@@ -55,10 +55,10 @@
 
 
         $(document).ready(function() {
-            var currentStep = 5;
+            var currentStep = 9;
             var totalSteps = 10;
 
-            $('#urlSempliceModal').modal('show');
+            // $('#urlSempliceModal').modal('show');
             $("#btnBack").hide();
 
             // Event handler untuk tombol "Next"
@@ -134,12 +134,10 @@
                 $('.is-invalid').removeClass('is-invalid');
             });
 
-            // Membuat objek FormData
             var formData = new FormData(this);
 
-            // Mengambil file dari Dropzone dan menambahkannya ke objek FormData
             myDropzone.files.forEach(function(file) {
-                formData.append('file[]', file); // Ganti 'file[]' sesuai dengan nama input file Anda
+                formData.append('file_product[]', file);
             });
 
             $.ajax({

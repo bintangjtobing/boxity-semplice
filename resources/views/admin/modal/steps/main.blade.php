@@ -14,7 +14,7 @@
                                     Profil Singkat - Owner
                                 </div>
                                 <div class="ml-auto">
-                                    Page <span id="titlePage">1</span> of 9
+                                    Page <span id="titlePage">1</span> of 10
                                 </div>
                             </div>
                         </div>

@@ -3,14 +3,16 @@
         <div class="navbar-left">
             <a href="" class="sidebar-toggle">
                 <img class="svg" src="{{ asset('img/svg/bars.svg') }}" alt="img"></a>
-            <a class="navbar-brand" href="#"><img class="dark" src="{{ asset('img/logo_dark.png') }}"
+            <a class="navbar-brand" href="#"><img class="dark" src="{{ asset('semplice_assets/semplice.png') }}"
                     alt="svg"><img class="light" src="{{ asset('img/logo_white.png') }}" alt="img"></a>
             {{-- <form action="/" class="search-form">
                 <span data-feather="search"></span>
                 <input class="form-control mr-sm-2 box-shadow-none" type="text" placeholder="Search...">
             </form> --}}
             <div class="top-menu">
-
+                @php
+                    $user = Auth::guard('admin')->user();
+                @endphp
                 <div class="strikingDash-top-menu position-relative">
                     {{-- <ul>
                         <li class="has-subMenu">
@@ -986,8 +988,8 @@
                                     <img src="img/author-nav.jpg" alt="" class="rounded-circle">
                                 </div>
                                 <div>
-                                    <h6>Abdullah Bin Talha</h6>
-                                    <span>UI Designer</span>
+                                    <h6>{{ $user->name }}</h6>
+                                    <span>{{ $user->Role->name }}</span>
                                 </div>
                             </div>
                             <div class="nav-author__options">
@@ -996,24 +998,8 @@
                                         <a href="">
                                             <span data-feather="user"></span> Profile</a>
                                     </li>
-                                    <li>
-                                        <a href="">
-                                            <span data-feather="settings"></span> Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <span data-feather="key"></span> Billing</a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <span data-feather="users"></span> Activity</a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <span data-feather="bell"></span> Help</a>
-                                    </li>
                                 </ul>
-                                <a href="" class="nav-author__signout">
+                                <a href="javascript:void(0)" class="nav-author__signout">
                                     <span data-feather="log-out"></span> Sign Out</a>
                             </div>
                         </div>

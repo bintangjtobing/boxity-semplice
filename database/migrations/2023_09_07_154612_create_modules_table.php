@@ -22,6 +22,7 @@ class CreateModulesTable extends Migration
             $table->string('route', 45);
             $table->tinyInteger('is_shown');
             $table->tinyInteger('type');
+            $table->tinyInteger('menu_type')->nullable();
             $table->timestamps();
 
             $table->foreign('module_group_id')->references('id')->on('module_groups');

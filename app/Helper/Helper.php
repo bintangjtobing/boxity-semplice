@@ -1,9 +1,8 @@
 <?php
 namespace App\Helper;
 
-use App\ModuleGroups;
-use App\Modules;
-use App\ModulesUser;
+use App\Module;
+use App\ModuleGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +18,7 @@ class Helper
         $role_id = Auth::guard('superadmin')->user()->role_id;
         $menus = collect([]);
 
-        $withoutSub = Modules::query()
+        $withoutSub = Module::query()
         ->with(['Authorization' => function ($query) use ($role_id) {
             $query->where('role_id', $role_id)->where('authorization_type_id', 1);
         }])
@@ -30,7 +29,7 @@ class Helper
         ->where('type', 1)
         ->orderBy('order', 'asc')
         ->get();
-        $withSub = ModuleGroups::query()
+        $withSub = ModuleGroup::query()
         ->with(['Modules' => function ($query) use ($role_id) {
             $query->whereHas('Authorization', function ($query) use ($role_id) {
                 $query->where('role_id', $role_id)->where('authorization_type_id', 1)->where('type', 1);
@@ -53,7 +52,7 @@ class Helper
         $role_id = Auth::guard('admin')->user()->role_id;
         $menus = collect([]);
 
-        $withoutSub = Modules::query()
+        $withoutSub = Module::query()
         ->with(['Authorization' => function ($query) use ($role_id) {
             $query->where('role_id', $role_id)->where('authorization_type_id', 1);
         }])
@@ -64,7 +63,7 @@ class Helper
         ->orderBy('order', 'asc')
         ->where('type', 2)
         ->get();
-        $withSub = ModuleGroups::query()
+        $withSub = ModuleGroup::query()
         ->with(['Modules' => function ($query) use ($role_id) {
             $query->whereHas('Authorization', function ($query) use ($role_id) {
                 $query->where('role_id', $role_id)->where('authorization_type_id', 1)->where('type', 2);
@@ -85,13 +84,6 @@ class Helper
         return $menus;
     }
 
-    public static function getCurrentUrl() {
-        $currentUrl = url()->current();
-        $implode = explode('/', $currentUrl);
-        $currentUrl = $implode[4];
-        return $currentUrl;
-    }
-
     public static function getCurrentUrlAdmin() {
         $currentUrl = url()->current();
         $implode = explode('/', $currentUrl);
@@ -105,25 +97,6 @@ class Helper
         $currentUrl = $implode[3];
         $route = $currentUrl . '_view_index';
         return $route;
-    }
-
-    public static function  getCurrentRestaurant() {
-        return Auth::guard('admin')->user()->Restaurant->name;
-    }
-
-    // For add'active' class for activated route nav-item
-    public static function active_class($path, $active = 'active') {
-        return call_user_func_array('Request::is', (array)$path) ? $active : '';
-    }
-
-      // For checking activated route
-    public static function is_active_route($path) {
-        return call_user_func_array('Request::is', (array)$path) ? 'true' : 'false';
-    }
-
-      // For add 'show' class for activated route collapse
-    public static function show_class($path) {
-        return call_user_func_array('Request::is', (array)$path) ? 'show' : '';
     }
 
     public static function strReplace($str, $from, $to) {
