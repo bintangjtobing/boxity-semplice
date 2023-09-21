@@ -55,7 +55,7 @@
 
 
         $(document).ready(function() {
-            var currentStep = 10;
+            var currentStep = 1;
             var totalSteps = 10;
 
             $('#urlSempliceModal').modal('show');
