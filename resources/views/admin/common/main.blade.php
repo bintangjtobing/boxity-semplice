@@ -55,13 +55,12 @@
 
 
         $(document).ready(function() {
-            var currentStep = 9;
+            var currentStep = 10;
             var totalSteps = 10;
 
-            // $('#urlSempliceModal').modal('show');
+            $('#urlSempliceModal').modal('show');
             $("#btnBack").hide();
 
-            // Event handler untuk tombol "Next"
             $("#btnNext").click(function() {
                 if (currentStep < totalSteps) {
                     currentStep++;
@@ -69,7 +68,6 @@
                 }
             });
 
-            // Event handler untuk tombol "Back"
             $("#btnBack").click(function() {
                 if (currentStep > 1) {
                     currentStep--;
@@ -87,6 +85,7 @@
                 'Situs Web dan Media Bisnis',
                 'Marketplace Bisnis',
                 'Promo / Event Bisnis',
+                '',
             ];
 
             function showStep(step) {
@@ -104,8 +103,15 @@
                 $('#titleModal').html(arrayData[step - 1]);
                 for (var i = 1; i <= totalSteps; i++) {
                     if (i == step) {
+                        if (i == 10) {
+                            $('#step1ModalLabel').html('');
+                            $('#pageId').attr('hidden', true);
+                        } else {
+                            $("#titlePage").html(i);
+                            $('#pageId').attr('hidden', false);
+                            $('#step1ModalLabel').html('Informasi Bisnis');
+                        }
                         $("#steps-" + i).show();
-                        $("#titlePage").html(i);
                     } else {
                         $("#steps-" + i).hide();
                         $(".atbd-steps__item").eq(i - 1).removeClass("active");

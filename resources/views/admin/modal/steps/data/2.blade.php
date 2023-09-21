@@ -2,7 +2,7 @@
     <div class="row mb-3">
         <div class="col-lg-6 col-md-12 col-sm-12">
             <div id="imageHeader">
-                <img id="uploadedHeader" src="" alt="Gambar Header"
+                <img id="uploadedHeader" src="{{ asset('template/bg-business.png') }}" alt="Gambar Header"
                     style="width:500px; max-height:180px; border-radius: 30px;" />
             </div>
         </div>
@@ -43,11 +43,11 @@
                 $('#file_photo_header').val('');
                 return false;
             }
-            showImagePreview(this)
+            showImagePreviewHeader(this)
         });
     });
 
-    function showImagePreview(input) {
+    function showImagePreviewHeader(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {

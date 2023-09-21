@@ -13,7 +13,7 @@
                                 <div id="titleModal">
                                     Profil Singkat - Owner
                                 </div>
-                                <div class="ml-auto">
+                                <div class="ml-auto" id="pageId">
                                     Page <span id="titlePage">1</span> of 10
                                 </div>
                             </div>

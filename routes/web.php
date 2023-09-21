@@ -25,7 +25,7 @@ Route::prefix('/')->group(function () {
     Route::post('/register', [AdminAuthController::class, 'processRegister'])->name('admin_view_processRegister');
     Route::get('/login', [AdminAuthController::class, 'viewLogin'])->name('admin_view_login');
     Route::post('/login', [AdminAuthController::class, 'processLogin'])->name('admin_view_processLogin');
-    Route::get('/logout', [AdminAuthController::class, 'processLogout'])->name('admin_view_processLogout');
+    Route::post('/logout', [AdminAuthController::class, 'processLogout'])->name('admin_view_processLogout');
 
     Route::namespace('Admin')->middleware(['admin'])->group(function () {
         Route::prefix('/dashboard')->group(function() {

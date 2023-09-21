@@ -1,6 +1,7 @@
 <div class="col-md">
-    <div class="row mb-3">
-        <div class="col-md">
+    <div class="row" style="margin-bottom: 50px;">
+        <div class="col-md text-center">
+            <img src="{{ asset('template/bg-done.png') }}" width="150px" alt="done" class="mb-3">
             <h5>
                 Selamat!
                 <br>

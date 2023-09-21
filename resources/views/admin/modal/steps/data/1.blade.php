@@ -2,7 +2,8 @@
     <div class="row mb-3">
         <div class="col-md text-center" style="display: grid; justify-items:center;">
             <div id="imagePhoto" class="mb-3">
-                <img id="uploadedImage" src="" alt="Gambar Profil" width="110px" style="border-radius: 90px;" />
+                <img id="uploadedImageOwner" src="{{ asset('template/bg-owner.png') }}" alt="Gambar Profil" width="110px"
+                    style="border-radius: 90px;" />
             </div>
             <input type="file" name="file_photo_owner" id="file_photo_owner" hidden>
             <a href="javascript:void(0)" class="btn btn-secondary" id="uploadButton">Upload Gambar Profil</a>
@@ -30,7 +31,6 @@
         $('#file_photo_owner').change(function() {
             var file = this.files[0];
             var fileType = file.type;
-            //ukuran max 5mb
             var fileSize = file.size;
             var match = ['image/jpeg', 'image/png', 'image/jpg'];
 
@@ -39,20 +39,20 @@
                 $('#file_photo_owner').val('');
                 return false;
             }
-            if (fileSize > 49876) {
+            if (fileSize > 498760) {
                 alert('Sorry, your file is too large to upload.');
                 $('#file_photo_owner').val('');
                 return false;
             }
-            showImagePreview(this)
+            showImagePreviewOwner(this)
         });
     });
 
-    function showImagePreview(input) {
+    function showImagePreviewOwner(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                $('#uploadedImage').attr('src', e.target.result);
+                $('#uploadedImageOwner').attr('src', e.target.result);
             };
             reader.readAsDataURL(input.files[0]);
         }

@@ -69,6 +69,15 @@ class AuthController extends Controller
         }
     }
 
+    function processLogout() {
+        Auth::guard('admin')->logout();
+        $message = [
+            'status' => true,
+            'success' => "Logout successful"
+        ];
+        return $message;
+    }
+
     function viewRegister() {
         return view('admin.page.register');
     }

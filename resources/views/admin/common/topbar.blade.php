@@ -999,7 +999,7 @@
                                             <span data-feather="user"></span> Profile</a>
                                     </li>
                                 </ul>
-                                <a href="javascript:void(0)" class="nav-author__signout">
+                                <a href="javascript:void(0)" class="nav-author__signout" id="logout">
                                     <span data-feather="log-out"></span> Sign Out</a>
                             </div>
                         </div>
@@ -1020,3 +1020,44 @@
         <!-- ends: .navbar-right -->
     </nav>
 </header>
+<script type="text/javascript">
+    $('#logout').on('click', function() {
+        event.preventDefault();
+        $(".submit").prop('disabled', true);
+        var token = {
+            _token: "{{ csrf_token() }}"
+        };
+        $.ajax({
+            url: "{{ route('admin_view_processLogout') }}",
+            type: "POST",
+            data: token,
+            success: function(res) {
+                console.log(res);
+                if (res.status == true) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: res.success
+                    });
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: res.error
+                    });
+                    $(".submit").prop('disabled', false);
+                }
+            },
+            error: function(res) {
+                $(".submit").prop('disabled', false);
+                if (res.status != 422)
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Something went wrong'
+                    });
+            }
+        });
+        return false;
+    })
+</script>
