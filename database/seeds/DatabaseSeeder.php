@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             ModuleGroupSeeder::class,
             ModuleSeeder::class,
             AuthorizationSeeder::class,
+            PaketTypeSeeder::class,
+            MarketplaceTypeSeeder::class,
+            SocialMediaTypeSeeder::class,
+            ProductTypeSeeder::class,
         ]);
     }
 }

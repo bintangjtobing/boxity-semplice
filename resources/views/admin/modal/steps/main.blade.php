@@ -13,7 +13,7 @@
                                 <div id="titleModal">
                                     Profil Singkat - Owner
                                 </div>
-                                <div class="ml-auto" id="pageId">
+                                <div class="ml-auto font-weight-bold" id="pageId">
                                     Page <span id="titlePage">1</span> of 10
                                 </div>
                             </div>
@@ -52,10 +52,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnBack">Back</button>
-                <button type="button" class="btn btn-primary" id="btnNext">Next</button>
+                <div class="row">
+                    <div class="col-md">
+                        <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%" id="btnNext">Next</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

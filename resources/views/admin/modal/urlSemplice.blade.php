@@ -2,10 +2,8 @@
     aria-labelledby="urlSempliceModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="urlSempliceModalLabel">Edit URL Semplice</h5>
-            </div>
             <div class="modal-body">
+                <h5 class="modal-title mb-3" id="urlSempliceModalLabel">Edit URL Semplice</h5>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">semplice.boxity.id/</span>

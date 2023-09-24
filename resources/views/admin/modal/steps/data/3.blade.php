@@ -13,10 +13,11 @@
     </div>
     <div class="row mb-3">
         <div class="col-md">
-            <label for="show_on_theme">Tampilkan pada tema?</label>
+            <label for="business_location_show">Tampilkan pada tema?</label>
             <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="show_on_theme">
-                <label class="custom-control-label" for="show_on_theme">On</label>
+                <input type="checkbox" class="custom-control-input" id="business_location_show"
+                    name="business_location_show" value="true">
+                <label class="custom-control-label" for="business_location_show">On</label>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessMarketplacesTable extends Migration
+class CreatePromoOrEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateBusinessMarketplacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_marketplaces', function (Blueprint $table) {
+        Schema::create('promo_or_events', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('business_owners_id');
+            $table->unsignedBigInteger('owner_business_id');
             $table->string('name', 100);
-            $table->text('url');
+            $table->string('sub_title', 100);
+            $table->text('link');
             $table->timestamps();
+
+            $table->foreign('owner_business_id')->references('id')->on('owner_businesses')->onDelete('cascade');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateBusinessMarketplacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_marketplaces');
+        Schema::dropIfExists('promo_or_events');
     }
 }

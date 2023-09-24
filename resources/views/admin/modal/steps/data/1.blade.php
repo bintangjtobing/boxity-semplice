@@ -12,12 +12,13 @@
     </div>
     <div class="row mb-3">
         <div class="col-md">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Nama Owner">
+            <input type="text" class="form-control" id="name" name="name_owner" placeholder="Nama Owner">
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md">
-            <textarea name="bio" id="bio" class="form-control" cols="30" rows="10" placeholder="Bio"></textarea>
+            <textarea name="bio_owner" id="bio" class="form-control" cols="30" rows="5" placeholder="Bio"
+                style="resize: none"></textarea>
         </div>
     </div>
 </div>

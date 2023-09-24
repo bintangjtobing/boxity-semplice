@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessSosmedsTable extends Migration
+class CreateMarketplaceTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateBusinessSosmedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_sosmeds', function (Blueprint $table) {
+        Schema::create('marketplace_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 45);
-            $table->text('url');
-            $table->unsignedInteger('business_owners_id');
+            $table->string('name', 100);
             $table->timestamps();
-
-            $table->foreign('business_owners_id')->references('id')->on('business_owners');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateBusinessSosmedsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_sosmeds');
+        Schema::dropIfExists('marketplace_types');
     }
 }
