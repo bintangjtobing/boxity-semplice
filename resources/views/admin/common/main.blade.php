@@ -58,7 +58,9 @@
             var currentStep = 1;
             var totalSteps = 10;
 
-            $('#urlSempliceModal').modal('show');
+            // $('#urlSempliceModal').modal('show');
+            $('#urlSempliceModal').modal('hide');
+            $('#step1Modal').modal('show');
             $("#btnBack").hide();
 
             $("#btnNext").click(function() {

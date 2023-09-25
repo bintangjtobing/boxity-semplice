@@ -15,17 +15,17 @@ class CreateOwnerBusinessesTable extends Migration
     {
         Schema::create('owner_businesses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('owner_id');
-            $table->unsignedBigInteger('admin_id');
-            $table->text('url');
-            $table->text('photo');
-            $table->text('description');
-            $table->text('address');
-            $table->text('link_location');
-            $table->boolean('is_show_location')->default(false);
-            $table->string('whatsapp_number', 45);
-            $table->string('phone_number', 45);
-            $table->string('email', 45);
+            $table->unsignedBigInteger('owner_id')->nullable();
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->text('url')->nullable();
+            $table->text('photo')->nullable();
+            $table->text('description')->nullable();
+            $table->text('address')->nullable();
+            $table->text('link_location')->nullable();
+            $table->boolean('is_show_location')->default(false)->nullable();
+            $table->string('whatsapp_number', 45)->nullable();
+            $table->string('phone_number', 45)->nullable();
+            $table->string('email', 45)->nullable();
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');

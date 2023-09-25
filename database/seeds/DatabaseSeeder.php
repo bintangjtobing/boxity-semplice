@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\RolesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +22,9 @@ class DatabaseSeeder extends Seeder
             MarketplaceTypeSeeder::class,
             SocialMediaTypeSeeder::class,
             ProductTypeSeeder::class,
+            TransactionSeeder::class,
+            OwnerBusinessSeeder::class,
+            BusinessHasPaketSeeder::class
         ]);
     }
 }

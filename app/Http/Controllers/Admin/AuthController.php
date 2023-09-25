@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin;
+use App\BusinessHasPaket;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\OwnerBusiness;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Repository\Admin\AuthRepository;
@@ -46,20 +48,38 @@ class AuthController extends Controller
         }
 
         if ($admin) {
-            if (Hash::check($password, $admin->password)) {
-                Auth::guard('admin')->login($admin);
-                $message = [
-                    'status' => true,
-                    'success' => 'Login Success'
-                ];
-                return response()->json($message);
-            } else {
+            if (Hash::check($password, $admin->password) != true) {
                 $message = [
                     'status' => false,
                     'error' => 'Password Missmatch'
                 ];
                 return response()->json($message);
             }
+
+            $owner_business = OwnerBusiness::where('admin_id', $admin->id)->first();
+            if (empty($owner_business)) {
+                $message = [
+                    'status' => false,
+                    'error' => 'Please Register first'
+                ];
+                return response()->json($message);
+            }
+
+            $membership = BusinessHasPaket::where('owner_business_id', $owner_business->id)->first();
+            if (empty($membership)) {
+                $message = [
+                    'status' => false,
+                    'error' => 'Please Buy Paket first'
+                ];
+                return response()->json($message);
+            }
+
+            Auth::guard('admin')->login($admin);
+            $message = [
+                'status' => true,
+                'success' => 'Login Success'
+            ];
+            return response()->json($message);
         } else {
             $message = [
                 'status' => false,

@@ -34,7 +34,11 @@
         </div>
     </div>
     {{-- <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%">Simpan & Tambah Produk</a> --}}
-    <button type="submit" class="btn btn-primary" style="width: 100%" id="btnSave">Save</button>
+    <div class="row mb-3">
+        <div class="col-md">
+            <button type="submit" class="btn btn-primary" style="width: 100%" id="btnSave">Save</button>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     Dropzone.autoDiscover = false;
