@@ -99,6 +99,18 @@ class Helper
         return $route;
     }
 
+    public static function changeRouteName()
+    {
+        $currentUrl = url()->current();
+        $implode = explode('/', $currentUrl);
+        $route = $implode[3];
+        $menu = Module::where('route', $route)->first();
+        if ($menu) {
+            $route = $menu->name;
+        }
+        return $route;
+    }
+
     public static function strReplace($str, $from, $to) {
         $str = str_replace($from, $to, $str);
         return $str;

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\MarketplaceController as AdminMarketplaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,14 @@ Route::prefix('/')->group(function () {
         Route::prefix('/dashboard')->group(function() {
             Route::get('/', [AdminDashboardController::class, 'view'])->name('dashboard_view_index');
             Route::post('/', [AdminDashboardController::class, 'create'])->name('dashboard_add_data');
+        });
+
+        Route::prefix('/business-marketplace')->group(function() {
+            Route::get('/', [AdminMarketplaceController::class, 'view'])->name('business-marketplace_view_index');
+            Route::get('/data', [AdminMarketplaceController::class, 'data'])->name('business-marketplace_view_data');
+            Route::get('/add', [AdminMarketplaceController::class, 'addView'])->name('business-marketplace_add_view');
+            Route::get('/edit/{id}', [AdminMarketplaceController::class, 'editView'])->name('business-marketplace_edit_view');
+            Route::post('/', [AdminMarketplaceController::class, 'create'])->name('business-marketplace_add_data');
         });
     });
 });
