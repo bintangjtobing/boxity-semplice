@@ -51,7 +51,6 @@ class DashboardRepository
         $productData = [
             'owner_business_id' => $business->id,
             'product_type_id' => $request->product_type_id,
-            'link' => $request->product_link
         ];
 
         $product = Product::create($productData);

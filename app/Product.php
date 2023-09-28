@@ -11,7 +11,7 @@ class Product extends Model
 {
     protected $table = 'products';
     protected $fillable = [
-        'owner_business_id', 'product_type_id', 'link'
+        'owner_business_id', 'product_type_id', 'name', 'description'
     ];
 
     public function ownerBusiness()

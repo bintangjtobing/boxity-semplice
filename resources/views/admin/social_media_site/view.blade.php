@@ -5,7 +5,7 @@
             <div class="breadcrumb-main">
                 <h4 class="text-capitalize breadcrumb-title">{{ ucfirst(Helper::changeRouteName()) }} Data</h4>
                 <div class="breadcrumb-action justify-content-center flex-wrap">
-                    <x-button-add href="{{ route('business-marketplace_add_view') }}" />
+                    <x-button-add href="{{ route('social-media-site_add_view') }}" />
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                                         <span class="userDatatable-title">No</span>
                                     </th>
                                     <th>
-                                        <span class="userDatatable-title">Marketplace Name</span>
+                                        <span class="userDatatable-title">Social Media Name</span>
                                     </th>
                                     <th>
                                         <span class="userDatatable-title">Link</span>
@@ -57,7 +57,7 @@
         let formData = $('#formFilter').serialize();
 
         $.ajax({
-            url: `business-marketplace/data?page=` + page,
+            url: `social-media-site/data?page=` + page,
             method: 'GET',
             data: formData,
             beforeSend: function(e) {
@@ -83,7 +83,7 @@
         let formData = $('#formFilter').serialize();
 
         $.ajax({
-            url: `business-marketplace/data`,
+            url: `social-media-site/data`,
             method: 'GET',
             data: formData,
             beforeSend: function(e) {
@@ -106,7 +106,7 @@
     }
 
     function deleteData(id) {
-        var url = `business-marketplace/delete/` + id;
+        var url = `social-media-site/delete/` + id;
         Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

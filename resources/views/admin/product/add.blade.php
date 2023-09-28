@@ -13,13 +13,20 @@
             <form id="formData">
                 @csrf
                 <div class="form-basic">
-                    <x-select label="Marketplace" id="marketplace_type_id">
-                        @foreach ($marketplace_type as $item)
+                    <x-input type="text" label="Nama Produk" id="name" placeholder="" value=""
+                        require="true" />
+                    <x-text-area label="Deskripsi Produk" id="description" placeholder="" value=""
+                        require="true" />
+                    <div class="form-group">
+                        <x-label label="Gambar Produk" id="file_product" require="true" />
+                        <div id="myDropzone" class="dropzone">
+                        </div>
+                    </div>
+                    <x-select label="Tipe Produk" id="product_type_id">
+                        @foreach ($product_type as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </x-select>
-                    <x-input type="text" label="Link" id="link" placeholder="" value=""
-                        require="true" />
                     <div class="form-group mb-0">
                         <button type="submit" class="btn btn-lg btn-primary btn-submit submit">Save</button>
                     </div>
@@ -29,12 +36,33 @@
     </div>
 </div>
 <script>
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#myDropzone", {
+        url: "/upload",
+        maxFiles: 4,
+        acceptedFiles: 'image/*',
+        autoProcessQueue: false,
+        autoQueue: false,
+        addRemoveLinks: true,
+    });
+    myDropzone.on("maxfilesreached", function(file) {
+        alert("Anda telah mencapai batas maksimum file yang diizinkan.");
+
+        var excessFiles = myDropzone.files.slice(3);
+        excessFiles.forEach(function(fileToRemove) {
+            myDropzone.removeFile(fileToRemove);
+        });
+    });
+
     $('#formData').submit(function(e) {
         $(".submit").prop('disabled', true);
         e.preventDefault();
         var formData = new FormData(this);
+        myDropzone.files.forEach(function(file) {
+            formData.append('file_product[]', file);
+        });
         $.ajax({
-            url: "{{ route('business-marketplace_add_post') }}",
+            url: "{{ route('product_add_post') }}",
             type: "POST",
             data: formData,
             contentType: false,
@@ -45,7 +73,7 @@
                     title: res.success
                 });
                 setTimeout(function() {
-                    window.location.href = "{{ route('business-marketplace_view_index') }}";
+                    window.location.href = "{{ route('product_view_index') }}";
                 }, 2000);
             },
             error: function(res) {

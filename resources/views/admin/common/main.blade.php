@@ -20,7 +20,7 @@
                 {!! $content !!}
                 <!-- ends: .row -->
             </div>
-            <form id="formData" enctype="multipart/form-data">
+            <form id="formDataDashboard" enctype="multipart/form-data">
                 @csrf
                 @include('admin.modal.urlSemplice')
                 @include('admin.modal.steps.main')
@@ -135,23 +135,23 @@
             $('#step1Modal').modal('show');
         })
 
-        $('#formData').submit(function(e) {
+        $('#formDataDashboard').submit(function(e) {
             $(".submit").prop('disabled', true);
             e.preventDefault();
             $('.is-invalid').each(function() {
                 $('.is-invalid').removeClass('is-invalid');
             });
 
-            var formData = new FormData(this);
+            var formDataDashboard = new FormData(this);
 
             myDropzone.files.forEach(function(file) {
-                formData.append('file_product[]', file);
+                formDataDashboard.append('file_product[]', file);
             });
 
             $.ajax({
                 url: "{{ route('dashboard_add_data') }}",
                 type: "POST",
-                data: formData,
+                data: formDataDashboard,
                 processData: false,
                 contentType: false,
                 success: function(res) {
@@ -162,7 +162,7 @@
                     $(".submit").prop('disabled', false);
                     if (res.status != 422)
                         toastr['error']("Something went wrong");
-                    showError(res.responseJSON.errors, "#formData");
+                    showError(res.responseJSON.errors, "#formDataDashboard");
                     $.each(res.responseJSON.errors, function(idx, item) {
                         toastr['error'](idx = item);
                     });

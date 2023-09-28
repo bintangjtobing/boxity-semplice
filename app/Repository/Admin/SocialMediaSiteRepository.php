@@ -2,31 +2,28 @@
 
 namespace App\Repository\Admin;
 
-use App\Marketplace;
-use App\MarketplaceType;
-use App\Owner;
 use Exception;
-use App\Product;
 use Carbon\Carbon;
-use App\OwnerBusiness;
+use App\SocialMedia;
+use App\SocialMediaType;
 use Illuminate\Support\Facades\Auth;
 
-class MarketplaceRepository
+class SocialMediaSiteRepository
 {
-    function getMarketplaceType()
+    function getSocialMediaSiteType()
     {
-        $data = MarketplaceType::all();
+        $data = SocialMediaType::all();
         return $data;
     }
 
     function getSingleData($id) {
-        $data = Marketplace::find($id);
+        $data = SocialMedia::find($id);
         return $data;
     }
 
     function getData($n) {
         $search = request('search');
-        $data = Marketplace::orderBy('id', 'asc');
+        $data = SocialMedia::orderBy('id', 'asc');
         if ($search) {
             $data = $data->where('name', 'like', '%' . $search . '%');
         }
@@ -37,23 +34,23 @@ class MarketplaceRepository
         $owner_business_id = Auth::guard('admin')->user()->ownerBusiness->id;
         $data = [
             'owner_business_id' => $owner_business_id,
-            'marketplace_type_id' => request('marketplace_type_id'),
+            'social_media_type_id' => request('social_media_site_type_id'),
             'link' => request('link')
         ];
-        Marketplace::create($data);
+        SocialMedia::create($data);
     }
 
     function update($id) {
-        $data = Marketplace::find($id);
+        $data = SocialMedia::find($id);
         $array = [
-            'marketplace_type_id' => request('marketplace_type_id'),
+            'social_media_type_id' => request('social_media_site_type_id'),
             'link' => request('link')
         ];
         $data->update($array);
     }
 
     function delete($id) {
-        $data = Marketplace::find($id);
+        $data = SocialMedia::find($id);
         $data->delete();
     }
 }

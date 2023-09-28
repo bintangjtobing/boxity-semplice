@@ -5,46 +5,45 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MarketplaceRequest;
-use App\Repository\Admin\MarketplaceRepository;
+use App\Repository\Admin\ProductRepository;
 
-class MarketplaceController extends Controller
+class ProductController extends Controller
 {
     protected $repo;
 
     public function __construct()
     {
-        $this->repo = new MarketplaceRepository;
+        $this->repo = new ProductRepository;
     }
 
     public function view()
     {
-        $content = view('admin.marketplace.view');
+        $content = view('admin.product.view');
         return view('admin.common.main', compact('content'));
     }
 
     public function addView()
     {
-        $data['marketplace_type'] = $this->repo->getMarketplaceType();
-        $content = view('admin.marketplace.add', $data);
+        $data['product_type'] = $this->repo->getProductType();
+        $content = view('admin.product.add', $data);
         return view('admin.common.main', ['content' => $content]);
     }
 
     public function editView($id)
     {
-        $data['marketplace_type'] = $this->repo->getMarketplaceType();
+        $data['product_type'] = $this->repo->getProductType();
         $data['data'] = $this->repo->getSingleData($id);
-        $content = view('admin.marketplace.edit', $data);
+        $content = view('admin.product.edit', $data);
         return view('admin.common.main', ['content' => $content]);
     }
 
     function data(Request $request)
     {
         $data['datas'] = $this->repo->getData(10);
-        return view('admin.marketplace.data', $data);
+        return view('admin.product.data', $data);
     }
 
-    function addPost(MarketplaceRequest $request) {
+    function addPost(Request $request) {
         DB::beginTransaction();
         try {
             $data = $this->repo->add();

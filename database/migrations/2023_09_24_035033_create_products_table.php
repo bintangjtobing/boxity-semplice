@@ -17,7 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('owner_business_id');
             $table->unsignedBigInteger('product_type_id');
-            $table->text('link');
+            $table->string('name', 45);
+            $table->text('description');
             $table->timestamps();
 
             $table->foreign('owner_business_id')->references('id')->on('owner_businesses')->onDelete('cascade');

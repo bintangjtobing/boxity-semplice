@@ -13,12 +13,13 @@
             <form id="formData">
                 @csrf
                 <div class="form-basic">
-                    <x-select label="Marketplace" id="marketplace_type_id">
-                        @foreach ($marketplace_type as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    <x-select label="Marketplace" id="social_media_site_type_id">
+                        @foreach ($social_media_site_type as $item)
+                            <option value="{{ $item->id }}" @if ($data->social_media_site_type_id == $item->id) selected @endif>
+                                {{ $item->name }}</option>
                         @endforeach
                     </x-select>
-                    <x-input type="text" label="Link" id="link" placeholder="" value=""
+                    <x-input type="text" label="Link" id="link" placeholder="" value="{{ $data->link }}"
                         require="true" />
                     <div class="form-group mb-0">
                         <button type="submit" class="btn btn-lg btn-primary btn-submit submit">Save</button>
@@ -32,20 +33,19 @@
     $('#formData').submit(function(e) {
         $(".submit").prop('disabled', true);
         e.preventDefault();
-        var formData = new FormData(this);
+        var formData = $('#formData').serialize();
         $.ajax({
-            url: "{{ route('business-marketplace_add_post') }}",
-            type: "POST",
+            url: "{{ route('business-social_media_site_edit_patch', $data->id) }}",
+            type: "PATCH",
             data: formData,
-            contentType: false,
-            processData: false,
             success: function(res) {
                 Toast.fire({
                     icon: 'success',
                     title: res.success
                 });
                 setTimeout(function() {
-                    window.location.href = "{{ route('business-marketplace_view_index') }}";
+                    window.location.href =
+                        "{{ route('business-social_media_site_view_index') }}";
                 }, 2000);
             },
             error: function(res) {

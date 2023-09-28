@@ -5,46 +5,46 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MarketplaceRequest;
-use App\Repository\Admin\MarketplaceRepository;
+use App\Http\Requests\SocialMediaSiteRequest;
+use App\Repository\Admin\SocialMediaSiteRepository;
 
-class MarketplaceController extends Controller
+class SocialMediaSiteController extends Controller
 {
     protected $repo;
 
     public function __construct()
     {
-        $this->repo = new MarketplaceRepository;
+        $this->repo = new SocialMediaSiteRepository;
     }
 
     public function view()
     {
-        $content = view('admin.marketplace.view');
+        $content = view('admin.social_media_site.view');
         return view('admin.common.main', compact('content'));
     }
 
     public function addView()
     {
-        $data['marketplace_type'] = $this->repo->getMarketplaceType();
-        $content = view('admin.marketplace.add', $data);
+        $data['social_media_site_type'] = $this->repo->getSocialMediaSiteType();
+        $content = view('admin.social_media_site.add', $data);
         return view('admin.common.main', ['content' => $content]);
     }
 
     public function editView($id)
     {
-        $data['marketplace_type'] = $this->repo->getMarketplaceType();
+        $data['social_media_site_type'] = $this->repo->getSocialMediaSiteType();
         $data['data'] = $this->repo->getSingleData($id);
-        $content = view('admin.marketplace.edit', $data);
+        $content = view('admin.social_media_site.edit', $data);
         return view('admin.common.main', ['content' => $content]);
     }
 
     function data(Request $request)
     {
         $data['datas'] = $this->repo->getData(10);
-        return view('admin.marketplace.data', $data);
+        return view('admin.social_media_site.data', $data);
     }
 
-    function addPost(MarketplaceRequest $request) {
+    function addPost(SocialMediaSiteRequest $request) {
         DB::beginTransaction();
         try {
             $data = $this->repo->add();

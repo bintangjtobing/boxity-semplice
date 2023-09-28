@@ -13,8 +13,8 @@
             <form id="formData">
                 @csrf
                 <div class="form-basic">
-                    <x-select label="Marketplace" id="marketplace_type_id">
-                        @foreach ($marketplace_type as $item)
+                    <x-select label="Social Media" id="social_media_site_type_id">
+                        @foreach ($social_media_site_type as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </x-select>
@@ -34,7 +34,7 @@
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({
-            url: "{{ route('business-marketplace_add_post') }}",
+            url: "{{ route('social-media-site_add_post') }}",
             type: "POST",
             data: formData,
             contentType: false,
@@ -45,7 +45,7 @@
                     title: res.success
                 });
                 setTimeout(function() {
-                    window.location.href = "{{ route('business-marketplace_view_index') }}";
+                    window.location.href = "{{ route('social-media-site_view_index') }}";
                 }, 2000);
             },
             error: function(res) {

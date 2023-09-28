@@ -16,7 +16,7 @@
         </td>
         <td>
             <div class="userDatatable-content">
-                {{ $i->marketplaceType->name }}
+                {{ $i->socialMediaType->name }}
             </div>
         </td>
         <td>
@@ -26,7 +26,7 @@
         </td>
         <td>
             <div class="userDatatable-content d-flex">
-                <x-edit href="{{ route('business-marketplace_edit_view', $i->id) }}" />
+                <x-edit href="{{ route('social-media-site_edit_view', $i->id) }}" />
                 <x-delete onclick="deleteData('{{ $i->id }}')" />
             </div>
         </td>

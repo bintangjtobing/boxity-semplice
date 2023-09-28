@@ -113,7 +113,7 @@ class ModuleSeeder extends Seeder
                 'name' => 'Web & Social Media',
                 'order' => 9,
                 'icon' => 'user-check',
-                'route' => 'social-media',
+                'route' => 'social-media-site',
                 'type' => 2,
                 'menu_type' => 2,
                 'is_shown' => 1
