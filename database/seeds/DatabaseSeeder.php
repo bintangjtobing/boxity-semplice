@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             AuthorizationSeeder::class,
             PaketTypeSeeder::class,
+            PaketSeeder::class,
             MarketplaceTypeSeeder::class,
             SocialMediaTypeSeeder::class,
             ProductTypeSeeder::class,

@@ -9,9 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $table = 'transactions';
-    protected $fillable = [
-        'paket_type_id', 'price', 'value', 'duration_type', 'transaction_date', 'status'
-    ];
+    protected $guarded = [];
 
     public function paketType()
     {

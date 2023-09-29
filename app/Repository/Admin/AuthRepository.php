@@ -22,7 +22,7 @@ class AuthRepository
             'role_id' => 2,
             'is_active' => 1
         ];
-
+        $admin = Admin::create($data);
         $business = OwnerBusiness::create([
             'owner_id' => null,
             'url' => null,
@@ -33,7 +33,8 @@ class AuthRepository
             'is_show_location' => null,
             'whatsapp_number' => null,
             'phone_number' => null,
-            'email' => null
+            'email' => null,
+            'admin_id' => $admin->id
         ]);
 
         $transaction = Transaction::create([
@@ -50,7 +51,5 @@ class AuthRepository
             'transaction_id' => $transaction->id,
             'owner_business_id' => $business->id
         ]);
-
-        Admin::create($data);
     }
 }

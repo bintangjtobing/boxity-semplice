@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MarketplaceController as AdminMarketplaceController;
 use App\Http\Controllers\Admin\SocialMediaSiteController as AdminSocialMediaSiteController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
+use App\Http\Controllers\Admin\TestimoniController as AdminTestimoniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,5 +68,19 @@ Route::prefix('/')->group(function () {
             Route::delete('/delete/{id}', [AdminProductController::class, 'delete'])->name('product_delete');
         });
 
+        Route::prefix('/business-contact')->group(function() {
+            Route::get('/', [AdminContactController::class, 'view'])->name('business-contact_view_index');
+            Route::patch('/', [AdminContactController::class, 'update'])->name('business-contact_edit_patch');
+        });
+
+        Route::prefix('/testimoni')->group(function() {
+            Route::get('/', [AdminTestimoniController::class, 'view'])->name('testimoni_view_index');
+            Route::get('/data', [AdminTestimoniController::class, 'data'])->name('testimoni_view_data');
+            Route::get('/add', [AdminTestimoniController::class, 'addView'])->name('testimoni_add_view');
+            Route::get('/edit/{id}', [AdminTestimoniController::class, 'editView'])->name('testimoni_edit_view');
+            Route::post('/add', [AdminTestimoniController::class, 'addPost'])->name('testimoni_add_post');
+            Route::patch('/edit/{id}', [AdminTestimoniController::class, 'update'])->name('testimoni_edit_patch');
+            Route::delete('/delete/{id}', [AdminTestimoniController::class, 'delete'])->name('testimoni_delete');
+        });
     });
 });

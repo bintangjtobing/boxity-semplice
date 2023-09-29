@@ -20,7 +20,9 @@ class PaketSeeder extends Seeder
                 'name' => 'Free Trial',
                 'duration' => 1,
                 'price' => 0,
-                'paket_type_id' => 1
+                'paket_type_id' => 1,
+                'max_upload_product' => 3,
+                'max_upload_testimonial' => 3
             ],
         ]);
     }

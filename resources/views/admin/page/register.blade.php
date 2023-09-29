@@ -264,7 +264,7 @@
                 dataType: "json",
                 beforeSend: function() {
                     loader.show();
-                    registerForm.find('button[type="button"]').prop('disabled', true);
+                    registerForm.find('button[type="submit"]').prop('disabled', true);
                 },
                 complete: function() {
                     loader.hide();
@@ -287,7 +287,7 @@
                 },
                 error: function(xhr, status, error) {
                     loader.hide();
-                    registerForm.find('button[type="button"]').prop('disabled', false);
+                    registerForm.find('button[type="submit"]').prop('disabled', false);
                     Toast.fire({
                         icon: 'error',
                         title: 'Something Was Wrong'

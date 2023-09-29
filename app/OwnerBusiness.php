@@ -15,9 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class OwnerBusiness extends Model
 {
     protected $table = 'owner_businesses';
-    protected $fillable = [
-        'owner_id', 'admin_id', 'url', 'photo', 'description', 'address', 'link_location', 'is_show_location', 'whatsapp_number', 'phone_number', 'email'
-    ];
+    protected $guarded = [];
 
     public function owner()
     {
