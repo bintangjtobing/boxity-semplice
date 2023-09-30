@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\SocialMediaSiteController as AdminSocialMediaSite
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\TestimoniController as AdminTestimoniController;
+use App\Http\Controllers\Admin\LocationController as AdminLocationController;
+use App\Http\Controllers\Admin\AboutController as AdminAboutController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +74,21 @@ Route::prefix('/')->group(function () {
         Route::prefix('/business-contact')->group(function() {
             Route::get('/', [AdminContactController::class, 'view'])->name('business-contact_view_index');
             Route::patch('/', [AdminContactController::class, 'update'])->name('business-contact_edit_patch');
+        });
+
+        Route::prefix('/business-location')->group(function() {
+            Route::get('/', [AdminLocationController::class, 'view'])->name('business-location_view_index');
+            Route::patch('/', [AdminLocationController::class, 'update'])->name('business-location_edit_patch');
+        });
+
+        Route::prefix('/business-about')->group(function() {
+            Route::get('/', [AdminAboutController::class, 'view'])->name('business-about_view_index');
+            Route::post('/', [AdminAboutController::class, 'update'])->name('business-about_edit_patch');
+        });
+
+        Route::prefix('/profile-owner')->group(function() {
+            Route::get('/', [AdminProfileController::class, 'view'])->name('profile-owner_view_index');
+            Route::post('/', [AdminProfileController::class, 'update'])->name('profile-owner_edit_patch');
         });
 
         Route::prefix('/testimoni')->group(function() {
