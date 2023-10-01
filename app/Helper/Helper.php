@@ -1,10 +1,13 @@
 <?php
 namespace App\Helper;
 
+use App\Paket;
 use App\Module;
 use App\ModuleGroup;
-use Illuminate\Support\Facades\Auth;
+use App\Transaction;
+use App\BusinessHasPaket;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 
@@ -116,16 +119,21 @@ class Helper
         return $str;
     }
 
-    public static function getSizes() {
-        $sizes = [
-            'XS' => 'XS',
-            'S' => 'S',
-            'M' => 'M',
-            'L' => 'L',
-            'XL' => 'XL',
-            'XXL' => 'XXL',
-            'XXXL' => 'XXXL'
-        ];
-        return $sizes;
+    public static function getMaxUploadProduct($owner_business_id)
+    {
+        $now = \Carbon\Carbon::now();
+        $businessHasPaket = BusinessHasPaket::where('owner_business_id', $owner_business_id)->where('expired_date', '>', $now)->first();
+        $transaction = Transaction::find($businessHasPaket->transaction_id);
+        $paket = Paket::find($transaction->paket_id);
+        return $paket->max_upload_product;
+    }
+
+    public static function getMaxUploadTestimoni($owner_business_id)
+    {
+        $now = \Carbon\Carbon::now();
+        $businessHasPaket = BusinessHasPaket::where('owner_business_id', $owner_business_id)->where('expired_date', '>', $now)->first();
+        $transaction = Transaction::find($businessHasPaket->transaction_id);
+        $paket = Paket::find($transaction->paket_id);
+        return $paket->max_upload_testimonial;
     }
 }

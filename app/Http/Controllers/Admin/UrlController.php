@@ -5,22 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Repository\Admin\ProfileRepository;
+use App\Repository\Admin\UrlRepository;
 
-class ProfileController extends Controller
+class UrlController extends Controller
 {
     protected $repo;
 
     public function __construct()
     {
-        $this->repo = new ProfileRepository;
+        $this->repo = new UrlRepository;
     }
 
     public function view()
     {
         $data['data'] = $this->repo->getSingleData();
         if ($data['data']) {
-            $content = view('admin.profile.edit', $data);
+            $content = view('admin.url.edit', $data);
             return view('admin.common.main', compact('content'));
         }
     }

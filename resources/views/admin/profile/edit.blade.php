@@ -15,6 +15,18 @@
                 <div class="form-basic">
                     <div class="row">
                         <div class="col-md">
+                            <div class="row">
+                                <div class="col-md text-center" style="display: grid; justify-items:center;">
+                                    <div id="imagePhoto" class="mb-3">
+                                        <img id="uploadOwnerImage" src="{{ asset('template/bg-owner.png') }}"
+                                            alt="Gambar Profil" width="110px" style="border-radius: 90px;" />
+                                    </div>
+                                    <input type="file" name="file_photo" id="file_photo" hidden>
+                                    <a href="javascript:void(0)" class="btn btn-secondary" id="uploadButton">Upload
+                                        Gambar Profil</a>
+                                    <small class="text-danger">Ukuran gambar maks. 5MB</small>
+                                </div>
+                            </div>
                             <x-input type="text" label="Nama" id="name" placeholder=""
                                 value="{{ $data->name }}" require="true" />
                             <x-text-area label="Biodata Owner" id="description" placeholder=""
@@ -30,6 +42,41 @@
     </div>
 </div>
 <script>
+    $(document).ready(function() {
+        $('#uploadButton').click(function() {
+            $('#file_photo').click();
+        });
+
+        $('#file_photo').change(function() {
+            var file = this.files[0];
+            var fileType = file.type;
+            var fileSize = file.size;
+            var match = ['image/jpeg', 'image/png', 'image/jpg'];
+
+            if (!(fileType == match[0] || fileType == match[1] || fileType == match[2])) {
+                alert('Sorry, only JPG, JPEG, & PNG files are allowed to upload.');
+                $('#file_photo').val('');
+                return false;
+            }
+            if (fileSize > 498760) {
+                alert('Sorry, your file is too large to upload.');
+                $('#file_photo').val('');
+                return false;
+            }
+            showProfileImage(this)
+        });
+    });
+
+    function showProfileImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#uploadOwnerImage').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     $('#formData').submit(function(e) {
         $(".submit").prop('disabled', true);
         e.preventDefault();

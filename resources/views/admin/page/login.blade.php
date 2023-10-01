@@ -251,7 +251,6 @@
                 data: registerForm.serialize(),
                 dataType: "json",
                 beforeSend: function() {
-                    $('.submit').attr('disabled', true);
                     loader.show();
                     registerForm.find('button[type="submit"]').prop('disabled', true);
                 },
@@ -268,6 +267,7 @@
                             window.location.href = "{{ url('/login') }}";
                         }, 2000);
                     } else {
+                        registerForm.find('button[type="submit"]').prop('disabled', false);
                         Toast.fire({
                             icon: 'error',
                             title: res.error

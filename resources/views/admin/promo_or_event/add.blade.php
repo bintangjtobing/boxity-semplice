@@ -13,11 +13,12 @@
             <form id="formData">
                 @csrf
                 <div class="form-basic">
-                    <x-input type="text" label="Nama Client / Customer" id="client_name" placeholder=""
-                        value="" require="true" />
-                    <x-text-area label="Pesan Testimoni" id="message" placeholder="" value="" require="true" />
-                    <x-checkbox label="Tampilkan pada Tema?" id="is_show" value="1" require="true"
-                        checked="false" />
+                    <x-input type="text" label="Nama Promo / Event" id="name" placeholder="" value=""
+                        require="true" />
+                    <x-input type="text" label="Sub Judul Promo / Event" id="sub_title" placeholder="" value=""
+                        require="true" />
+                    <x-input type="text" label="Link Teks Tombol" id="link" placeholder="" value=""
+                        require="true" />
                     <div class="form-group mb-0">
                         <button type="submit" class="btn btn-lg btn-primary btn-submit submit">Save</button>
                     </div>
@@ -32,26 +33,19 @@
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({
-            url: "{{ route('testimoni_add_post') }}",
+            url: "{{ route('promo-or-event_add_post') }}",
             type: "POST",
             data: formData,
             contentType: false,
             processData: false,
             success: function(res) {
-                if (res.status == false) {
-                    Toast.fire({
-                        icon: 'error',
-                        title: res.error
-                    });
-                } else {
-                    Toast.fire({
-                        icon: 'success',
-                        title: res.success
-                    });
-                    setTimeout(function() {
-                        window.location.href = "{{ route('testimoni_view_index') }}";
-                    }, 2000);
-                }
+                Toast.fire({
+                    icon: 'success',
+                    title: res.success
+                });
+                setTimeout(function() {
+                    window.location.href = "{{ route('promo-or-event_view_index') }}";
+                }, 2000);
             },
             error: function(res) {
                 if (res.status != 422)

@@ -68,13 +68,20 @@
             contentType: false,
             processData: false,
             success: function(res) {
-                Toast.fire({
-                    icon: 'success',
-                    title: res.success
-                });
-                setTimeout(function() {
-                    window.location.href = "{{ route('product_view_index') }}";
-                }, 2000);
+                if (res.status == false) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: res.error
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'success',
+                        title: res.success
+                    });
+                    setTimeout(function() {
+                        window.location.href = "{{ route('product_view_index') }}";
+                    }, 2000);
+                }
             },
             error: function(res) {
                 if (res.status != 422)

@@ -2,10 +2,11 @@
 
 namespace App\Repository\Admin;
 
-use App\MarketplaceType;
 use Exception;
-use Carbon\Carbon;
 use App\Testimoni;
+use Carbon\Carbon;
+use App\Helper\Helper;
+use App\MarketplaceType;
 use Illuminate\Support\Facades\Auth;
 
 class TestimoniRepository
@@ -38,6 +39,11 @@ class TestimoniRepository
             'message' => request('message'),
             'is_show' => request('is_show') ?? 0
         ];
+        $count = Testimoni::where('owner_business_id', $owner_business_id)->count();
+        $max_upload_testimoni = Helper::getMaxUploadTestimoni($owner_business_id);
+        if ($count >= $max_upload_testimoni) {
+            throw new Exception('Maksimal ' . $max_upload_testimoni . ' Testimoni');
+        }
         Testimoni::create($data);
     }
 

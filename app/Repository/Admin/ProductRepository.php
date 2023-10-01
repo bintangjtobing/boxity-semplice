@@ -4,9 +4,10 @@ namespace App\Repository\Admin;
 
 use Exception;
 use App\Product;
-use App\ProductImage;
 use Carbon\Carbon;
 use App\ProductType;
+use App\ProductImage;
+use App\Helper\Helper;
 use Illuminate\Support\Facades\Auth;
 
 class ProductRepository
@@ -38,7 +39,11 @@ class ProductRepository
             'name' => request('name'),
             'description' => request('description')
         ];
-
+        $count = Product::where('owner_business_id', $owner_business_id)->count();
+        $max_upload_product = Helper::getMaxUploadProduct($owner_business_id);
+        if ($count >= $max_upload_product) {
+            throw new Exception('Maksimal ' . $max_upload_product . ' Produk');
+        }
         $product = Product::create($productData);
 
         $file = request('file_product');

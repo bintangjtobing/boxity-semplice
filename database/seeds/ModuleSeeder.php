@@ -43,7 +43,7 @@ class ModuleSeeder extends Seeder
                 'name' => 'Url Bisnis',
                 'order' => 2,
                 'icon' => 'mail',
-                'route' => 'url-bisnis',
+                'route' => 'business-url',
                 'type' => 2,
                 'menu_type' => 2,
                 'is_shown' => 1

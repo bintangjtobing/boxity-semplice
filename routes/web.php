@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\TestimoniController as AdminTestimoniController;
 use App\Http\Controllers\Admin\LocationController as AdminLocationController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\UrlController as AdminUrlController;
+use App\Http\Controllers\Admin\PromoOrEventController as AdminPromoOrEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +93,11 @@ Route::prefix('/')->group(function () {
             Route::post('/', [AdminProfileController::class, 'update'])->name('profile-owner_edit_patch');
         });
 
+        Route::prefix('/business-url')->group(function() {
+            Route::get('/', [AdminUrlController::class, 'view'])->name('business-url_view_index');
+            Route::post('/', [AdminUrlController::class, 'update'])->name('business-url_edit_patch');
+        });
+
         Route::prefix('/testimoni')->group(function() {
             Route::get('/', [AdminTestimoniController::class, 'view'])->name('testimoni_view_index');
             Route::get('/data', [AdminTestimoniController::class, 'data'])->name('testimoni_view_data');
@@ -100,5 +107,17 @@ Route::prefix('/')->group(function () {
             Route::patch('/edit/{id}', [AdminTestimoniController::class, 'update'])->name('testimoni_edit_patch');
             Route::delete('/delete/{id}', [AdminTestimoniController::class, 'delete'])->name('testimoni_delete');
         });
+
+        Route::prefix('/promo-or-event')->group(function() {
+            Route::get('/', [AdminPromoOrEventController::class, 'view'])->name('promo-or-event_view_index');
+            Route::get('/data', [AdminPromoOrEventController::class, 'data'])->name('promo-or-event_view_data');
+            Route::get('/add', [AdminPromoOrEventController::class, 'addView'])->name('promo-or-event_add_view');
+            Route::get('/edit/{id}', [AdminPromoOrEventController::class, 'editView'])->name('promo-or-event_edit_view');
+            Route::post('/add', [AdminPromoOrEventController::class, 'addPost'])->name('promo-or-event_add_post');
+            Route::patch('/edit/{id}', [AdminPromoOrEventController::class, 'update'])->name('promo-or-event_edit_patch');
+            Route::delete('/delete/{id}', [AdminPromoOrEventController::class, 'delete'])->name('promo-or-event_delete');
+        });
+
+        Route::get('/{url}', [AdminAuthController::class, 'viewBusinessLanding'])->name('business-landing_view');
     });
 });

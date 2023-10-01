@@ -64,8 +64,8 @@ class AuthController extends Controller
                 ];
                 return response()->json($message);
             }
-
-            $membership = BusinessHasPaket::where('owner_business_id', $owner_business->id)->first();
+            $now = \Carbon\Carbon::now();
+            $membership = BusinessHasPaket::where('owner_business_id', $owner_business->id)->where('expired_date', '>', $now)->first();
             if (empty($membership)) {
                 $message = [
                     'status' => false,
