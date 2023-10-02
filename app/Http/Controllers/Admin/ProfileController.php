@@ -21,14 +21,16 @@ class ProfileController extends Controller
         $data['data'] = $this->repo->getSingleData();
         if ($data['data']) {
             $content = view('admin.profile.edit', $data);
-            return view('admin.common.main', compact('content'));
+        } else {
+            $content = view('admin.profile.add', $data);
         }
+        return view('admin.common.main', compact('content'));
     }
 
     function update(Request $request){
         DB::beginTransaction();
         try {
-            $data = $this->repo->update();
+            $data = $this->repo->update($request);
             DB::commit();
             $message = [
                 'status' => true,

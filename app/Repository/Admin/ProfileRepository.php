@@ -2,29 +2,39 @@
 
 namespace App\Repository\Admin;
 
-use App\Marketplace;
-use App\MarketplaceType;
 use App\Owner;
 use Exception;
-use App\Product;
 use Carbon\Carbon;
-use App\OwnerBusiness;
 use Illuminate\Support\Facades\Auth;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProfileRepository
 {
     function getSingleData() {
-        $data = OwnerBusiness::first();
+        $data = Owner::first();
         return $data;
     }
 
-    function update() {
-        $data = OwnerBusiness::first();
+    function update($request) {
+        $data = Owner::first();
         $array = [
-            'address' => request('address'),
-            'link_location' => request('link_location'),
-            'is_show_location' => request('is_show_location') ?? 0,
+            'name' => request('name'),
+            'description' => request('description'),
         ];
-        $data->update($array);
+        if ($request->hasFile('file_photo')) {
+            if ($data->photo) {
+                $publicId = explode('/', $data->photo);
+                $publicId = explode('.', $publicId[6]);
+                $publicId = $publicId[0];
+                Cloudinary::destroy($publicId);
+            }
+            $array['photo'] = Cloudinary::upload($request->file('file_photo')->getRealPath())->getSecurePath();
+        }
+        if ($data) {
+            $data->update($array);
+        } else {
+            $array['photo'] = Cloudinary::upload($request->file('file_photo')->getRealPath())->getSecurePath();
+            Owner::create($array);
+        }
     }
 }

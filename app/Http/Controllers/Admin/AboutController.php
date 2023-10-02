@@ -28,7 +28,7 @@ class AboutController extends Controller
     function update(Request $request){
         DB::beginTransaction();
         try {
-            $data = $this->repo->update();
+            $data = $this->repo->update($request);
             DB::commit();
             $message = [
                 'status' => true,

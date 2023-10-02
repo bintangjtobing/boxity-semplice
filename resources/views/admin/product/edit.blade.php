@@ -38,6 +38,7 @@
 </div>
 <script>
     Dropzone.autoDiscover = false;
+
     var myDropzone = new Dropzone("#myDropzone", {
         url: "/upload",
         maxFiles: 4,
@@ -49,57 +50,58 @@
 
     var existingFiles = @json($data->productImages);
 
-    function getFileSizeInKB(filePath) {
-        var fileSizeBytes = 0;
-        var xhr = new XMLHttpRequest();
-        xhr.open("HEAD", filePath, false);
-        xhr.send();
-
-        if (xhr.status == 200) {
-            fileSizeBytes = xhr.getResponseHeader("Content-Length");
-            var fileSizeKB = Math.round(fileSizeBytes / 1024);
-            return fileSizeKB;
-        } else {
-            console.error('Gagal mendapatkan ukuran file.');
-            return null;
-        }
+    function getFileSizeInKB(fileUrl, callback) {
+        fetch(fileUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Gagal mendapatkan ukuran file.');
+                }
+                return response.headers.get('content-length');
+            })
+            .then(contentLength => {
+                var fileSizeKB = Math.round(contentLength / 1024);
+                callback(fileSizeKB);
+            })
+            .catch(error => {
+                console.error(error);
+                callback(null);
+            });
     }
 
     existingFiles.forEach(function(file) {
         var realFileName = file.photo.split('/').pop();
+        var fileUrl = file.photo;
+        getFileSizeInKB(fileUrl, function(realFileSizeKB) {
+            var mockFile = new File([realFileName], realFileName, {
+                type: 'image/*',
+                lastModified: Date.now()
+            });
 
-        var filePath = "{{ asset('') }}" + file.photo;
-        var realFileSizeKB = getFileSizeInKB(filePath);
+            myDropzone.emit('addedfile', mockFile);
 
-        var mockFile = new File([realFileName], realFileName, {
-            type: 'image/*',
-            lastModified: Date.now()
+            var fileNode = myDropzone.files.find(function(node) {
+                return node.name === realFileName;
+            });
+
+            if (fileNode) {
+                fileNode.upload.total = realFileSizeKB;
+                fileNode.upload.bytesSent = realFileSizeKB;
+            }
+
+            myDropzone.emit('thumbnail', mockFile, fileUrl);
+            myDropzone.files.push(mockFile);
         });
-
-        myDropzone.emit('addedfile', mockFile);
-
-        var fileNode = myDropzone.files.find(function(node) {
-            return node.name === realFileName;
-        });
-
-        if (fileNode) {
-            fileNode.upload.total = realFileSizeKB;
-            fileNode.upload.bytesSent = realFileSizeKB;
-        }
-
-        var fileUrl = "{{ asset('') }}" + file.photo;
-
-        myDropzone.emit('thumbnail', mockFile, fileUrl);
-        myDropzone.files.push(mockFile);
     });
 
-    myDropzone.on("maxfilesreached", function(file) {
-        alert("Anda telah mencapai batas maksimum file yang diizinkan.");
-
-        var excessFiles = myDropzone.files.slice(3);
-        excessFiles.forEach(function(fileToRemove) {
-            myDropzone.removeFile(fileToRemove);
-        });
+    myDropzone.on("addedfile", function(file) {
+        var total = 3;
+        if (myDropzone.files.length > total) {
+            myDropzone.removeFile(file);
+            Toast.fire({
+                icon: 'error',
+                title: 'Anda telah mencapai batas maksimum file yang diizinkan (' + total + ' file).'
+            });
+        }
     });
 
     $('#formData').submit(function(e) {

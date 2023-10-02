@@ -28,8 +28,8 @@
                             <div class="row">
                                 <div class="col-md">
                                     <input type="file" name="file_photo_header" id="file_photo_header" hidden>
-                                    <a href="javascript:void(0)" class="btn btn-secondary"
-                                        id="uploadHeaderButton">Upload Gambar Header</a>
+                                    <a href="javascript:void(0)" class="btn btn-secondary" id="uploadHead">Upload Gambar
+                                        Header</a>
                                     <small class="text-danger">Ukuran gambar maks. 5MB</small>
                                 </div>
                             </div>
@@ -81,19 +81,20 @@
     //     return false;
     // })
 
-    $('#uploadHeaderButton').click(function() {
+    $('#uploadHead').click(function() {
         $('#file_photo_header').click();
     });
 
     $('#formData').submit(function(e) {
+        $(".submit").prop('disabled', true);
         e.preventDefault();
-        var formData = new FormData($('#formData')[0]); // Menggunakan FormData
+        var formData = new FormData($('#formData')[0]);
         $.ajax({
             url: "{{ route('business-about_edit_patch') }}",
-            type: "POST", // Perlu POST untuk mengunggah file
+            type: "POST",
             data: formData,
-            contentType: false, // Tidak mengatur contentType secara otomatis
-            processData: false, // Tidak memproses data secara otomatis
+            contentType: false,
+            processData: false,
             success: function(res) {
                 Toast.fire({
                     icon: 'success',
@@ -104,6 +105,7 @@
                 }, 2000);
             },
             error: function(res) {
+                $(".submit").prop('disabled', false);
                 if (res.status != 422)
                     Toast.fire({
                         icon: 'error',

@@ -9,6 +9,7 @@ use App\ProductType;
 use App\ProductImage;
 use App\Helper\Helper;
 use Illuminate\Support\Facades\Auth;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductRepository
 {
@@ -48,8 +49,7 @@ class ProductRepository
 
         $file = request('file_product');
         foreach ($file as $key => $value) {
-            $value->move('images/products', $value->getClientOriginalName());
-            $path = 'images/products/' . $value->getClientOriginalName();
+            $path = Cloudinary::upload($value->getRealPath())->getSecurePath();
 
             $productImage = ProductImage::create([
                 'product_id' => $product->id,

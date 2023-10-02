@@ -18,8 +18,7 @@
                             <div class="row">
                                 <div class="col-md text-center" style="display: grid; justify-items:center;">
                                     <div id="imagePhoto" class="mb-3">
-                                        <img id="uploadOwnerImage"
-                                            src="{{ $data->photo ?? asset('template/bg-owner.png') }}"
+                                        <img id="uploadOwnerImage" src="{{ asset('template/bg-owner.png') }}"
                                             alt="Gambar Profil" width="110px" style="border-radius: 90px;" />
                                     </div>
                                     <input type="file" name="file_photo" id="file_photo" hidden>
@@ -28,10 +27,10 @@
                                     <small class="text-danger">Ukuran gambar maks. 5MB</small>
                                 </div>
                             </div>
-                            <x-input type="text" label="Nama" id="name" placeholder=""
-                                value="{{ $data->name }}" require="true" />
-                            <x-text-area label="Biodata Owner" id="description" placeholder=""
-                                value="{{ $data->description }}" require="true" />
+                            <x-input type="text" label="Nama" id="name" placeholder="" value=""
+                                require="true" />
+                            <x-text-area label="Biodata Owner" id="description" placeholder="" value=""
+                                require="true" />
                         </div>
                     </div>
                     <div class="form-group mb-0">

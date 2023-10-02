@@ -10,3 +10,8 @@
     z-index: 9999 !important;
     /* Atur nilai z-index sesuai kebutuhan Anda */
 }
+
+.dropzone .dz-preview .dz-image img {
+    width: 100%;
+    height: auto;
+}
