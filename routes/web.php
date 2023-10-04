@@ -69,7 +69,7 @@ Route::prefix('/')->group(function () {
             Route::get('/add', [AdminProductController::class, 'addView'])->name('product_add_view');
             Route::get('/edit/{id}', [AdminProductController::class, 'editView'])->name('product_edit_view');
             Route::post('/add', [AdminProductController::class, 'addPost'])->name('product_add_post');
-            Route::patch('/edit/{id}', [AdminProductController::class, 'update'])->name('product_edit_patch');
+            Route::post('/edit/{id}', [AdminProductController::class, 'update'])->name('product_edit_patch');
             Route::delete('/delete/{id}', [AdminProductController::class, 'delete'])->name('product_delete');
         });
 

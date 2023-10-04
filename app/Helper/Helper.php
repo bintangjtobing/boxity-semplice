@@ -136,4 +136,14 @@ class Helper
         $paket = Paket::find($transaction->paket_id);
         return $paket->max_upload_testimonial;
     }
+
+    public static function checkFileExistInTable($product_id, $file)
+    {
+        $check = DB::table('product_images')->where('product_id', $product_id)->where('photo', 'LIKE', '%' . $file . '%')->first();
+        if ($check) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

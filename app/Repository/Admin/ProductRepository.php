@@ -61,14 +61,37 @@ class ProductRepository
     function update($id) {
         $data = Product::find($id);
         $array = [
-            'social_media_type_id' => request('social_media_site_type_id'),
-            'link' => request('link')
+            'name' => request('name'),
+            'description' => request('description'),
+            'product_type_id' => request('product_type_id')
         ];
         $data->update($array);
+        $file = request('file_product');
+        if ($file) {
+            foreach ($file as $key => $f) {
+                $file_name = $f->getClientOriginalName();
+                //cari nama file di tabel product image di kolom photo
+                dd(Helper::checkFileExistInTable($id, $file_name));
+                foreach ($data->productImages as $value) {
+                    $old_path = $value->photo;
+                    $exp = explode('/', $old_path);
+                    $old_file_name = $exp[7];
+                    if ($file_name != $old_file_name) {
+                        dd('keluar');
+                    } else {
+                        dd('masuk');
+                    }
+
+                }
+            }
+        } else {
+            ProductImage::where('product_id', $id)->delete();
+        }
     }
 
     function delete($id) {
         $data = Product::find($id);
+        ProductImage::where('product_id', $id)->delete();
         $data->delete();
     }
 }

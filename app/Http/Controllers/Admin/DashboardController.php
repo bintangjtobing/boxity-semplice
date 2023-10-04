@@ -17,7 +17,9 @@ class DashboardController extends Controller
 
     public function view()
     {
-        $content = view('admin.dashboard.view');
+        $data['url'] = $this->repo->getUrl();
+        $data['product_types'] = $this->repo->getProductTypes();
+        $content = view('admin.dashboard.view', $data);
         return view('admin.common.main', compact('content'));
     }
 

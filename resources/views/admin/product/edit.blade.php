@@ -105,7 +105,7 @@
     });
 
     $('#formData').submit(function(e) {
-        $(".submit").prop('disabled', true);
+        // $(".submit").prop('disabled', true);
         e.preventDefault();
         var formData = new FormData(this);
         myDropzone.files.forEach(function(file) {
@@ -113,7 +113,7 @@
         });
         $.ajax({
             url: "{{ route('product_edit_patch', $data->id) }}",
-            type: "PATCH",
+            type: "POST",
             data: formData,
             contentType: false,
             processData: false,
@@ -123,7 +123,7 @@
                     title: res.success
                 });
                 setTimeout(function() {
-                    window.location.href = "{{ route('product_view_index') }}";
+                    // window.location.href = "{{ route('product_view_index') }}";
                 }, 2000);
             },
             error: function(res) {

@@ -29,7 +29,7 @@
                         @php
                             $photo = $item->productImages->first()->photo;
                         @endphp
-                        <img class="card-img-top img-fluid" src="{{ asset($photo) }}" alt="digital-chair">
+                        <img class="card-img-top img-fluid" src="{{ $photo }}" alt="digital-chair">
                         {{-- </a> --}}
                     </div>
                     <div class="card-body px-20 pb-25 pt-20">

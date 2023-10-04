@@ -1,6 +1,5 @@
 <div class="row ">
     <div class="col-lg-12">
-
         <div class="breadcrumb-main">
             <h4 class="text-capitalize breadcrumb-title">Ecommerce Dashboard</h4>
             <div class="breadcrumb-action justify-content-center flex-wrap">
@@ -1316,3 +1315,150 @@
         </div>
     </div>
 </div>
+
+<form id="formDataDashboard" enctype="multipart/form-data">
+    @csrf
+    @include('admin.modal.urlSemplice')
+    @include('admin.modal.steps.main')
+</form>
+<script type="text/javascript">
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+
+    $(document).ready(function() {
+        var currentStep = 1;
+        var totalSteps = 10;
+
+        if ($url == null) {
+            $('#urlSempliceModal').modal('show');
+        }
+        // $('#urlSempliceModal').modal('hide');
+        // $('#step1Modal').modal('show');
+        $("#btnBack").hide();
+
+        $("#btnNext").click(function() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        $("#btnBack").click(function() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        var arrayData = [
+            'Profil Singkat - Owner',
+            'Tentang Bisnis',
+            'Lokasi Bisnis',
+            'Testimoni Bisnis',
+            'Produk Bisnis',
+            'Kontak Bisnis',
+            'Situs Web dan Media Bisnis',
+            'Marketplace Bisnis',
+            'Promo / Event Bisnis',
+            '',
+        ];
+
+        function showStep(step) {
+            if (step > 1) {
+                $("#btnBack").show();
+            } else {
+                $("#btnBack").hide();
+            }
+
+            if (step === totalSteps) {
+                $("#btnNext").hide();
+            } else {
+                $("#btnNext").show();
+            }
+            $('#titleModal').html(arrayData[step - 1]);
+            for (var i = 1; i <= totalSteps; i++) {
+                if (i == step) {
+                    if (i == 10) {
+                        $('#step1ModalLabel').html('');
+                        $('#pageId').attr('hidden', true);
+                    } else {
+                        $("#titlePage").html(i);
+                        $('#pageId').attr('hidden', false);
+                        $('#step1ModalLabel').html('Informasi Bisnis');
+                    }
+                    $("#steps-" + i).show();
+                } else {
+                    $("#steps-" + i).hide();
+                    $(".atbd-steps__item").eq(i - 1).removeClass("active");
+                }
+            }
+        }
+
+        showStep(currentStep);
+    });
+
+    $('#btnOpenSteps1').on('click', function() {
+        var urlSemplice = $('#url_semplice').val();
+        clearSingleError('url_semplice');
+        if (urlSemplice == '') {
+            showSingleError('url_semplice', 'Url Semplice tidak boleh kosong')
+            return false;
+        }
+        $('#urlSempliceModal').modal('hide');
+        $('#step1Modal').modal('show');
+    })
+
+    $('#formDataDashboard').submit(function(e) {
+        $(".submit").prop('disabled', true);
+        e.preventDefault();
+        $('.is-invalid').each(function() {
+            $('.is-invalid').removeClass('is-invalid');
+        });
+
+        var formDataDashboard = new FormData(this);
+
+        myDropzone1.files.forEach(function(file) {
+            formDataDashboard.append('file_product_1[]', file);
+        });
+
+        myDropzone2.files.forEach(function(file) {
+            formDataDashboard.append('file_product_2[]', file);
+        });
+
+        myDropzone3.files.forEach(function(file) {
+            formDataDashboard.append('file_product_3[]', file);
+        });
+
+        $.ajax({
+            url: "{{ route('dashboard_add_data') }}",
+            type: "POST",
+            data: formDataDashboard,
+            processData: false,
+            contentType: false,
+            success: function(res) {
+                toastr['success']("Data Berhasil di Tambahkan");
+                window.location.reload();
+            },
+            error: function(res) {
+                $(".submit").prop('disabled', false);
+                if (res.status != 422)
+                    toastr['error']("Something went wrong");
+                showError(res.responseJSON.errors, "#formDataDashboard");
+                $.each(res.responseJSON.errors, function(idx, item) {
+                    toastr['error'](idx = item);
+                });
+            }
+        });
+        return false;
+    });
+</script>

@@ -21,7 +21,12 @@
             </div>
         </div>
     </div>
-    <a href="javascript:void(0)" class="btn btn-primary" style="width: 30%" id="addRow">+ Tambahkan tautan sosial</a>
+    <div class="row mb-3">
+        <div class="col-md">
+            <a href="javascript:void(0)" class="btn btn-primary" style="width: 30%" id="addRow">+ Tambahkan tautan
+                sosial</a>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">

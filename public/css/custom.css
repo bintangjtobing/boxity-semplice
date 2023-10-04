@@ -15,3 +15,7 @@
     width: 100%;
     height: auto;
 }
+
+.card-img-top {
+    height: 40vh;
+}

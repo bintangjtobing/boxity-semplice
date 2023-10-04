@@ -1,4 +1,4 @@
-<div class="col-md">
+<div class="col-md mb-3">
     <div class="row mb-3">
         <div class="col-md">
             <label for="">Whatsapp</label>

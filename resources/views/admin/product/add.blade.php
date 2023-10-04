@@ -46,7 +46,10 @@
         addRemoveLinks: true,
     });
     myDropzone.on("maxfilesreached", function(file) {
-        alert("Anda telah mencapai batas maksimum file yang diizinkan.");
+        Toast.fire({
+            icon: 'error',
+            title: "Anda telah mencapai batas maksimum file yang diizinkan."
+        });
 
         var excessFiles = myDropzone.files.slice(3);
         excessFiles.forEach(function(fileToRemove) {

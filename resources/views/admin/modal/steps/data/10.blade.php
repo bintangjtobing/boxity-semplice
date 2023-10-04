@@ -9,6 +9,6 @@
             </h5>
         </div>
     </div>
-    {{-- <button type="submit" class="btn btn-primary" style="width: 100%" id="btnSave">Save</button> --}}
+    <button type="button" class="btn btn-primary" style="width: 100%" data-dismiss="modal">Lanjutkan</button>
     <a href="javascript:void(0)" class="btn btn-success" style="width: 100%">Preview my Semplice!</a>
 </div>
