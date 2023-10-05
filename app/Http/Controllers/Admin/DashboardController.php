@@ -17,8 +17,11 @@ class DashboardController extends Controller
 
     public function view()
     {
+        $data['marketplace_types'] = $this->repo->getMarketplaceType();
+        $data['social_media_types'] = $this->repo->getSocialMediaType();
         $data['url'] = $this->repo->getUrl();
         $data['product_types'] = $this->repo->getProductTypes();
+        $data['owner_business'] = $this->repo->getOwnerBusiness();
         $content = view('admin.dashboard.view', $data);
         return view('admin.common.main', compact('content'));
     }

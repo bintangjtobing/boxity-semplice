@@ -6,16 +6,14 @@
                 <div class="col-md">
                     <div class="input-group-prepend mb-3">
                         <select class="custom-select" id="inputGroupSelect02" style="width: 200px;"
-                            name="marketplace_name[]">
-                            <option value="Shopee" selected>Shopee</option>
-                            <option value="Tokopedia">Tokopedia</option>
-                            <option value="Lazada">Lazada</option>
-                            <option value="Bukalapak">Bukalapak</option>
-                            <option value="Tiktok">Tiktok</option>
+                            name="marketplace_name[]" required>
+                            @foreach ($marketplace_types as $mt)
+                                <option value="{{ $mt->id }}">{{ $mt->name }}</option>
+                            @endforeach
                         </select>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="jhondoe"
-                                name="marketplace_address[]" id="marketplace_address">
+                                name="marketplace_address[]" id="marketplace_address" required>
                         </div>
                     </div>
                 </div>

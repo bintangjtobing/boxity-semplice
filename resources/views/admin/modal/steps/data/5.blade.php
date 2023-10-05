@@ -20,7 +20,7 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="product_name_{{ $i }}"
-                                            name="product_name_{{ $i }}" placeholder="Nama Produk">
+                                            name="product_name_{{ $i }}" placeholder="Nama Produk" required>
                                     </div>
                                     <div class="col-md">
                                         <label for="file_product">Gambar Product</label>
@@ -29,7 +29,7 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <textarea name="product_description_{{ $i }}" id="product_description_{{ $i }}"
-                                            class="form-control" cols="30" rows="10" placeholder="Ceritakan tentang produk"></textarea>
+                                            class="form-control" cols="30" rows="10" placeholder="Ceritakan tentang produk" required></textarea>
                                     </div>
                                     <div class="col-md">
                                         <div id="myDropzone{{ $i }}" class="dropzone"></div>

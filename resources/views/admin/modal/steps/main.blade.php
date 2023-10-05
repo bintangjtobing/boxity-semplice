@@ -49,12 +49,15 @@
                             <div class="row" id="steps-10">
                                 @include('admin.modal.steps.data.10')
                             </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%"
+                                        id="btnNext">Next</a>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%"
+                                        id="btn-save">Next</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md">
-                        <a href="javascript:void(0)" class="btn btn-primary" style="width: 100%" id="btnNext">Next</a>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="col-md">
-            <input type="file" name="file_photo_header" id="file_photo_header" hidden>
+            <input type="file" name="file_photo_header" id="file_photo_header" hidden required>
             <a href="javascript:void(0)" class="btn btn-secondary" id="uploadHeaderButton">Upload Gambar Header</a>
             <small class="text-danger">Ukuran gambar maks. 5MB</small>
         </div>
@@ -15,7 +15,7 @@
     <div class="row mb-3">
         <div class="col-md">
             <textarea name="business_description" id="business_description" class="form-control" cols="30" rows="10"
-                placeholder="Ceritakan dengan singkat tentang bisnis kamu..."></textarea>
+                placeholder="Ceritakan dengan singkat tentang bisnis kamu..." required></textarea>
         </div>
     </div>
 </div>

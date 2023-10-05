@@ -19,7 +19,8 @@
                             <div class="col-md">
                                 <label for="promo_name_{{ $i }}">Nama promo/event</label>
                                 <input type="text" class="form-control" id="promo_name_{{ $i }}"
-                                    name="promo_name_{{ $i }}" placeholder="Promo Special Akhir Tahun">
+                                    name="promo_name_{{ $i }}" placeholder="Promo Special Akhir Tahun"
+                                    required>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -27,7 +28,7 @@
                                 <label for="promo_sub_title_{{ $i }}">Sub Judul promo/event</label>
                                 <input type="text" class="form-control" id="promo_sub_title_{{ $i }}"
                                     name="promo_sub_title_{{ $i }}"
-                                    placeholder="Isi data email dan dapatkan diskon 30%">
+                                    placeholder="Isi data email dan dapatkan diskon 30%" required>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -35,7 +36,7 @@
                                 <label for="link_teks_button_{{ $i }}">Link teks tombol</label>
                                 <input type="text" class="form-control" id="link_teks_button_{{ $i }}"
                                     name="link_teks_button_{{ $i }}"
-                                    placeholder="https://bisnis.com/event-apply">
+                                    placeholder="https://bisnis.com/event-apply" required>
                             </div>
                         </div>
                     </div>
@@ -43,5 +44,4 @@
             </div>
         @endfor
     </div>
-    <button type="submit" class="btn btn-primary" style="width: 100%">Save</button>
 </div>

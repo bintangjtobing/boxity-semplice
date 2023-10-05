@@ -5,20 +5,21 @@
                 <img id="uploadedImageOwner" src="{{ asset('template/bg-owner.png') }}" alt="Gambar Profil" width="110px"
                     style="border-radius: 90px;" />
             </div>
-            <input type="file" name="file_photo_owner" id="file_photo_owner" hidden>
+            <input type="file" name="file_photo_owner" id="file_photo_owner" hidden required>
             <a href="javascript:void(0)" class="btn btn-secondary" id="uploadButton">Upload Gambar Profil</a>
             <small class="text-danger">Ukuran gambar maks. 5MB</small>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md">
-            <input type="text" class="form-control" id="name" name="name_owner" placeholder="Nama Owner">
+            <input type="text" class="form-control" id="name" name="name_owner" placeholder="Nama Owner"
+                required>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md">
             <textarea name="bio_owner" id="bio" class="form-control" cols="30" rows="5" placeholder="Bio"
-                style="resize: none"></textarea>
+                style="resize: none" required></textarea>
         </div>
     </div>
 </div>

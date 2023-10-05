@@ -5,16 +5,15 @@
             <div class="row mb-3">
                 <div class="col-md">
                     <div class="input-group-prepend mb-3">
-                        <select class="custom-select" id="inputGroupSelect02" style="width: 200px;" name="situs_name[]">
-                            <option value="Instragram" selected>Instagram</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="Tiktok">Tiktok</option>
-                            <option value="Youtube">Youtube</option>
-                            <option value="Situs Website">Situs Website</option>
+                        <select class="custom-select" id="inputGroupSelect02" style="width: 200px;" name="situs_name[]"
+                            required>
+                            @foreach ($social_media_types as $sm)
+                                <option value="{{ $sm->id }}">{{ $sm->name }}</option>
+                            @endforeach
                         </select>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="jhondoe" id="username"
-                                name="username[]">
+                                name="username[]" required>
                         </div>
                     </div>
                 </div>
