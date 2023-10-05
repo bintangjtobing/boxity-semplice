@@ -2,11 +2,10 @@
     <div class="col-lg-12">
 
         <div class="breadcrumb-main">
-            <h4 class="text-capitalize breadcrumb-title">Microsite {{ $owner_business->name ?? '{Nama Business}' }}
+            <h4 class="text-capitalize breadcrumb-title">Microsite {{ $owner_business->url ?? '{Nama Business}' }}
                 Dashboard</h4>
             <div class="breadcrumb-action justify-content-center flex-wrap">
                 <div class="action-btn">
-
                     <div class="form-group mb-0">
                         <div class="input-container icon-left position-relative">
                             <span class="input-icon icon-left">
